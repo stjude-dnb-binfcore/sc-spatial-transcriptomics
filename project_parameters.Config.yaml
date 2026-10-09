@@ -1,0 +1,91 @@
+# the following parameters are the same across the project and might be needed in more than one module #
+root_dir: "/sc-spatial-transcriptomics" # Absolute path to the main dir of the project where GitHub repo lives
+data_dir: "/sc-spatial-transcriptomics/analyses/cellranger-analysis/results/02_cellranger_count/DefaultParameters" # Absolute path to data dir of the project with CellRanger output results. Options: "DefaultParameters", "ForcedCells8000Parameters", or else. 
+metadata_dir: "/sc-spatial-transcriptomics/data/project_metadata" # Absolute path to metadata dir of the project. File name always named as: `project_metadata.tsv`.
+metadata_file: "project_metadata.tsv" # Options: "project_metadata.tsv" (default) or name as user wants. It needs to be in `tsv` format. It can include one or more samples, as long as it contains at least the following columns in this exact order: `ID`, `SAMPLE`, and `FASTQ`. The `ID` column must contain unique values. Additional metadata columns can be added and arranged as needed by the user (though not required). For samples with multiple technical replicates, list all associated FASTQ file paths in the same row, using commas to separate each path.
+genome_name: "GRCm39" # define genome reference and versioning. Options: (1) human: "GRCh38" and "hg19"; (2) mouse: "GRCm39", "mm10", and "mm9"; and (3) dual index genomes: "GRCh38ANDGRCm39", "GRCh38_mm10", and "GRCh38_mm9".
+PROJECT_NAME: "PROJECT_NAME"
+PI_NAME: "PI_NAME"
+TASK_ID: "Development of sc-Spatial Transcriptomics workflow - Testing Phase"
+PROJECT_LEAD_NAME: "NA"
+DEPARTMENT: "Center for Spatial Omics"
+LEAD_ANALYSTS: "Felipe Segato Dezem, PhD and Maycon Marção, Msc"
+GROUP_LEAD: "Jasmine Plummer, PhD"
+CONTACT_EMAIL: "antonia.chroni@stjude.org"
+PIPELINE: "Standard sc-Spatial Transcriptomics Analysis in 10X Genomics data"
+START_DATE: "10/09/2026"
+COMPLETION_DATE: "ONGOING"
+
+# `./analyses/...-analysis` - TO UPDATE ACCORDINGLY - EXAMPLE----
+genome_reference_path: "./" # Absolute path to genome reference to be used for the `cellranger-analysis` module
+cellranger_parameters: "DefaultParameters" # Options: "DefaultParameters", "ForcedCells8000Parameters", or else
+genome_name_cellranger: "GRCm39" # define the genome of preference for dual genomes. In case for single genomes, please use the same as used for `genome_name`.
+create_bam_value: "true" # Options: "true" (default) or "false". For non-human experiments, we recommend setting this to 'false' to reduce memory usage per project.
+# Define the sample ID prefix(es) used in this project.
+# Sample IDs should follow a format like: PREFIX001 (e.g., DYE001, ABC002).
+# You can specify multiple prefixes if your project uses more than one.
+sample_prefix: 
+  - DYE
+  - ABC-
+  - XYZ_
+
+# `./analyses/upstream-analysis` - TO UPDATE ACCORDINGLY - EXAMPLE ----
+print_pdf_seurat_multiple_samples: "YES" # Options: "YES" (default ALWAYS), for `02B_run_seurat_qc_multiple_samples.R`
+use_condition_split_seurat_multiple_samples: "NO" # Options: "NO" (default ALWAYS), for  `02B_run_seurat_qc_multiple_samples.R`
+grouping: "orig.ident" # define grouping to use 
+Regress_Cell_Cycle_value: "NO" # Options: "YES", "NO", "DIFF", OR "mtDNA". Indicates whether or not to regress for cell cycle and, if so, which method to use and scale data; acceptable values.
+assay_seurat_qc: "RNA" # Options: "RNA" (default ALWAYS)
+use_SoupX_filtering_seurat_qc: "NO" # Options: "YES" or "NO" (default), for `02A_run_seurat_qc.Rmd`
+min_genes: 300 # define minimum number of genes for filtering
+min_count: 500 # define minimum number of UMIs for filtering
+mtDNA_pct_default: 10 # define minimum percentage of mtDNA for filtering
+normalize_method: "log_norm" # define method for normalization of counts
+num_pcs: 30 # define number of principal components
+nfeatures_value: 3000 # define number of variable features
+prefix: "lognorm" # create label based on the normalization method used
+use_miQC: "NO" # Options: "YES" or "NO". Use of miQC R package or not; see `README.md` file for more information.
+use_only_step1: "NO" # Options: "YES" or "NO". Use of both or only first step for filtering low quality cells; see `README.md` file for more information.
+condition_value1: "Disease" # Use discrete values. Min #conditions per project: 1 and Max #conditions per project: 3. To use for visualization purposes and split UMAPs. Value to be extracted from column name in `project_metadata.tsv` file. 
+condition_value2: NULL # Use discrete values. Min #conditions per project: 1 and Max #conditions per project: 3. To use for visualization purposes and split UMAPs. Value to be extracted from column name in `project_metadata.tsv` file. 
+condition_value3: NULL # Use discrete values. Min #conditions per project: 1 and Max #conditions per project: 3. To use for visualization purposes and split UMAPs. Value to be extracted from column name in `project_metadata.tsv` file. 
+
+num_dim_seurat_qc: 30 # number of PCs to use in UMAP. For multiple variations, use: [20, 25]
+num_neighbors_seurat_qc: 30 # number of neighbors to use in UMAP. For multiple variations, use: [10, 20, 30]
+soup_fraction_value_default: 0.05 # set rho default value to use if estimated rho is > 20%
+assay_filter_object: "RNA"  # Options: "RNA" (default) or "RNA_SoupX"
+genome_name_upstream: "GRCm39" # Options for the `Genome_Specific_Cell_Cycle_Scoring` function: (1) human: "GRCh38" and "hg19"; (2) mouse: "GRCm39", "mm10", and "mm9"; and (3) dual index genomes: "DualGRCh38", "Dualhg19", "DualGRCm39", "Dualmm10", and "Dualmm9".
+
+
+num_dim_filter_object: 30 # set one value for `04_run_filter_object.Rmd`
+num_neighbors_filter_object: 30 # set one value for `04_run_filter_object.Rmd`
+use_condition_split_filter_object: "YES" # Options: "YES" (default) or "NO", for `04_run_filter_object.Rmd`
+print_pdf_filter_object: "NO" # # Options: "NO" (default ALWAYS), for `04_run_filter_object.Rmd`
+use_SoupX_filtering_filter_object: "NO" # Options: "YES" or "NO" (default) , for `04_run_filter_object.Rmd`.
+use_scDblFinder_filtering_filter_object: "NO" # Options: "YES" or "NO" (default) , for `04_run_filter_object.Rmd`.
+#PCA_Feature_List_value: transcription.factor.gene.list # set for 04_run_filter_object.Rmd if necessary
+use_SoupX_filtering_summary_report: "NO" # Options: "YES" or "NO" (default) , for `05_run_summary_report.Rmd`.
+use_scDblFinder_filtering_summary_report: "NO" # Options: "YES" or "NO" (default) , for `05_run_summary_report.Rmd`.
+
+# Maximum size (in GiB) for future.globals.maxSize.
+# The value is specified in GiB here and converted to bytes in R using:
+#   future.globals.maxSize = as.numeric(value) * 1024^3
+#
+# Example:
+#   200 GiB  -> 200 * 1024^3 = 214748364800 bytes
+future_globals_value_upstream: 200 # Default. Adjust based on dataset size and available memory.
+
+# `./analyses/integrative-analysis`
+use_seurat_integration: "NO" # Options: "YES" or "NO"
+use_harmony_integration: "YES" # Options: "YES" or "NO"
+use_liger_integration: "NO" # Options: "YES" or "NO"
+integration_method: "harmony" # Options: "seurat", "harmony", "inmf", "not_integrated" (for cohorts with a single sample)
+num_dim_seurat: 30
+num_dim_seurat_integration: 50
+big_data_value: FALSE # Options: "TRUE" or "FALSE"
+num_dim_harmony: 30
+n_neighbors_value: 20
+variable_value: "ID"
+reference_list_value: NULL
+PCA_Feature_List_value: NULL
+future_globals_value_integrative: 200 # Default. Adjust based on dataset size and available memory. See `future_globals_value_upstream` in the `upstream-analysis` module for more details.
+
