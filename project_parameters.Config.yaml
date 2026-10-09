@@ -74,7 +74,7 @@ use_scDblFinder_filtering_summary_report: "NO" # Options: "YES" or "NO" (default
 #   200 GiB  -> 200 * 1024^3 = 214748364800 bytes
 future_globals_value_upstream: 200 # Default. Adjust based on dataset size and available memory.
 
-# `./analyses/integrative-analysis`
+# `./analyses/integrative-analysis` - TO UPDATE ACCORDINGLY - EXAMPLE ----
 use_seurat_integration: "NO" # Options: "YES" or "NO"
 use_harmony_integration: "YES" # Options: "YES" or "NO"
 use_liger_integration: "NO" # Options: "YES" or "NO"
