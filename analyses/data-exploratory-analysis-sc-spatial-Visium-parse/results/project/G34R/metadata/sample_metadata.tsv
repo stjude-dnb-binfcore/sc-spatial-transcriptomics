@@ -1,0 +1,17 @@
+ID	project	data_type	seq_technology	kit	chemistry	species	tissue	Genotype	Age	scATAC_available	PI	PROJECT_LEAD_NAME	condition_1	condition_2
+sample_1	G34R	snRNAseq	Parse	WT	v3	mouse	Cortex	SmoM2_G34R_p53	E16	unknown	Han	Kris Olesen	Genotype	NA
+sample_2	G34R	snRNAseq	Parse	WT	v3	mouse	Cortex	SmoM2_G34R	E16	unknown	Han	Kris Olesen	Genotype	NA
+sample_3	G34R	snRNAseq	Parse	WT	v3	mouse	Cortex	WT	E16	unknown	Han	Kris Olesen	Genotype	NA
+sample_4	G34R	snRNAseq	Parse	WT	v3	mouse	Cortex	SmoM2	E16	unknown	Han	Kris Olesen	Genotype	NA
+sample_7	G34R	snRNAseq	Parse	WT	v3	mouse	Cortex	WT	E16	unknown	Han	Kris Olesen	Genotype	NA
+sample_8	G34R	snRNAseq	Parse	WT	v3	mouse	Cortex	SmoM2_G34R_p53	E16	unknown	Han	Kris Olesen	Genotype	NA
+sample_19	G34R	snRNAseq	Parse	WT	v3	mouse	Cortex	WT	E16	unknown	Han	Kris Olesen	Genotype	NA
+sample_10	G34R	snRNAseq	Parse	WT	v3	mouse	Cortex	SmoM2	E16	unknown	Han	Kris Olesen	Genotype	NA
+sample_20	G34R	snRNAseq	Parse	WT	v3	mouse	Cortex	SmoM2_G34R_p53	E16	unknown	Han	Kris Olesen	Genotype	NA
+sample_23	G34R	snRNAseq	Parse	WT	v3	mouse	Cortex	SmoM2	E16	unknown	Han	Kris Olesen	Genotype	NA
+sample_34	G34R	snRNAseq	Parse	WT	v3	mouse	Cortex	SmoM2	E16	unknown	Han	Kris Olesen	Genotype	NA
+sample_35	G34R	snRNAseq	Parse	WT	v3	mouse	Cortex	SmoM2	E16	unknown	Han	Kris Olesen	Genotype	NA
+sample_39	G34R	snRNAseq	Parse	WT	v3	mouse	Cortex	SmoM2_G34R	E16	unknown	Han	Kris Olesen	Genotype	NA
+sample_40	G34R	snRNAseq	Parse	WT	v3	mouse	Cortex	WT	E16	unknown	Han	Kris Olesen	Genotype	NA
+sample_41	G34R	snRNAseq	Parse	WT	v3	mouse	Cortex	SmoM2_G34R	E16	unknown	Han	Kris Olesen	Genotype	NA
+sample_42	G34R	snRNAseq	Parse	WT	v3	mouse	Cortex	WT	E16	unknown	Han	Kris Olesen	Genotype	NA

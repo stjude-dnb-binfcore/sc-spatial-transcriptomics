@@ -1,0 +1,586 @@
+---
+title: "Data exploratory analysis sc-spatial Visium (parse)"
+author: "Sharon Freshour for SJCRH DNB_BINF_Core"
+papersize: a4
+fontsize: 11pt
+links-as-notes: true
+output:
+  html_document:
+    toc: TRUE
+    toc_float: TRUE
+    df_print: paged
+    code_folding: hide
+    toc_depth: 2
+    highlight: tango
+    number_sections: TRUE
+always_allow_html: TRUE
+urlcolor: blue
+linkcolor: black
+citecolor: blue
+geometry: margin=1in
+header-includes: 
+  - \usepackage{titling}
+  - \usepackage{fancyhdr}
+  - \usepackage{graphicx}
+  - \usepackage{float}
+params:
+  root_dir: './'
+  metadata_dir_parse: './'
+  metadata_file: './'
+  input_dir_parse: './'
+  keep_columns: '.'
+  PROJECT_NAME: '.'
+  PI_NAME: '.'
+  TASK_ID: '.'
+  PROJECT_LEAD_NAME: '.'
+  DEPARTMENT: '.'
+  LEAD_ANALYSTS: '.'
+  GROUP_LEAD: '.'
+  CONTACT_EMAIL: '.'
+  PIPELINE: '.'
+  START_DATE: '.'
+  COMPLETION_DATE: '.'
+---
+
+```{r logo-file, echo=FALSE}
+attach(params)
+# Insert logo on the top of the html report
+logo_file <- file.path(root_dir, "figures", "img", "DNB-BINF-Core-logo.png")
+htmltools::img(src = knitr::image_uri(logo_file),
+               alt = "logo",
+               style = "position:absolute; top:0; left:0; padding:0px; height:120px;")
+detach(params)
+```
+
+\addtolength{\headheight}{2.0cm} 
+\fancypagestyle{plain}{} 
+\thispagestyle{fancy}
+\fancyhead[L]{\includegraphics[height=120px]{`r logo_file`}}
+\renewcommand{\headrulewidth}{0pt}
+
+<style type="text/css">
+:root {--DNB_BINF_Core_color: #00427B;}
+
+h1.title {margin-top: 130px;
+          margin-bottom: 25px;
+          font-size: 36px;}
+
+.nobullet li {list-style-type: none;}
+
+.reporthead {font-size: 20px;}
+
+body { /* Normal */
+  font-size: 16px;
+  font-style: Arial, Helvetica, sans-serif;}
+
+h1 {color: var(--DNB_BINF_Core_color);
+    font-size: 28px;
+    margin-top: 50px;}
+
+h2 {color: var(--DNB_BINF_Core_color);
+    font-size: 20px;}
+
+.list-group-item.active, .list-group-item.active:focus, .list-group-item.active:hover {
+  background-color: var(--DNB_BINF_Core_color);}
+</style>
+
+<a href="https://wiki.stjude.org/display/CAB">
+
+</a>
+
+\pagebreak
+
+<div class="reporthead"><br/>
+**PI: `r params$PI_NAME`**  
+**Project: `r params$PROJECT_NAME`**  
+Task: `r params$TASK_ID`  
+Project Lead(s): `r params$PROJECT_LEAD_NAME`  
+Department: `r params$DEPARTMENT`  
+
+<br />  
+
+DNB Bioinformatics Core Analysis Team: 
+<br />  
+
+>**Lead Analyst(s): `r params$LEAD_ANALYSTS`**  
+>Group Lead: `r params$GROUP_LEAD`  
+<br />
+>**Contact E-mail:** `r params$CONTACT_EMAIL`  
+>**DNB Bioinformatics Core Pipeline:** `r params$PIPELINE`  
+
+Date started: `r params$START_DATE`  
+Date completed:  `r params$COMPLETION_DATE`  
+Report generated: `r format(Sys.time(), '%H:%M:%S %Z %m/%d/%Y')` \
+
+Reviewed by: _____________________   Date: ____________ \
+</div>
+\pagebreak
+  
+
+# Information about this notebook
+This is an exploratory analysis of metadata and inputs for the **sc-spatial-transcriptomics** workflow (10x Visium with Parse-style loading tables). We investigate sublibraries, samples, conditions, tissue, and other variables needed to develop and test this module. For a filled Parse cohort reference, see `analyses/data-exploratory-analysis-parse-example`.
+
+# Set up
+
+```{r load-library, echo=TRUE}
+suppressPackageStartupMessages({
+  library(tidyverse)
+  library(knitr)
+  library(DT)
+})
+```
+
+# Directories and paths to file Inputs/Outputs
+
+```{r set-dir-and-file-names, echo=TRUE}
+attach(params)
+analysis_dir <- file.path(root_dir, "analyses", "data-exploratory-analysis-sc-spatial-Visium-parse")
+
+# File path to project metadata file
+metadata_file_path <- file.path(metadata_dir_parse, metadata_file)
+
+# File path to `results` directory
+results_dir <- file.path(analysis_dir, "results")
+if (!dir.exists(results_dir)) {
+  dir.create(results_dir)}
+
+# Load custom function
+source(file.path(analysis_dir, "/util/function-create-common-columns.R"))
+```
+
+```{r echo=FALSE, warning=FALSE}
+opts_chunk$set(fig.align = "center",
+               external = TRUE,
+               echo = FALSE,
+               warning = FALSE,
+               fig.pos = "H")
+a4width <- 8.3
+a4height <- 11.7
+```
+
+# Read metadata file and define `project_name`
+
+```{r read-metadata-define-project-name, echo=TRUE}
+# Read metadata
+project_metadata <- read_tsv(metadata_file_path, col_names = TRUE, show_col_types = FALSE) %>%
+  arrange(project)
+
+# Get list of project names
+project_name <- as.character(project_metadata$project)
+print(project_name)
+```
+
+# Read raw sublibrary metadata
+
+We will organize the sublibrary metadata for SRM_ID, sublibrary_ID, FASTQ and additional metadata for sequencing kit, chemistry, and data type across current Parse projects to generate individual and joint metadata output files.
+
+Standardized individual sublibrary metadata tsv files will be saved in: `results/project/<project_name>/metadata/sublibrary_metadata.tsv` for each project.
+
+```{r read-raw-data-sublibrary, echo=TRUE}
+# Read raw sublibrary metadata
+
+# Standardize sublibrary metadata in terms of SRM_ID, sublibrary_ID, FASTQ style/organization
+# Save individual metadata files in standardized format
+for (i in seq_along(project_name)) {
+  
+  # Get project name
+  project_id <- project_name[i]
+  
+  # Specify project paths
+  project_input_dir <- file.path(input_dir_parse, project_id, "metadata")
+  sublib_input_path <- file.path(project_input_dir, "sublibrary_metadata.tsv")
+  
+  print("Processing project:")
+  print(project_id)
+  
+  # Load sublibrary metadata for project
+  sublib_metadata <- read_tsv(sublib_input_path, show_col_types = FALSE) %>%
+    
+    # Select columns to preserve
+    select(ID, SAMPLE, FASTQ) %>%
+    
+    # Rename columns to SRM_ID and sublibrary_ID for consistency with this spatial workflow
+    rename(SRM_ID = ID,
+           sublibrary_ID = SAMPLE) %>%
+    
+    # Ensure there are no spaces in FASTQ column
+    # Top-ups list FASTQ paths should not contain spaces, based on Parse documentation
+    mutate(FASTQ = str_remove_all(FASTQ, " ")) %>%
+    
+    # Add metadata columns for sequencing technology info and project info
+    create_common_columns()
+
+  # Standardize content of SRM_ID, sublibrary_ID columns
+  if (project_id %in% c("CDK6", "G34R", "Pilot")) {
+    sublib_metadata <- mutate(sublib_metadata,
+                              TMP = SRM_ID,
+                              SRM_ID = sublibrary_ID,
+                              sublibrary_ID = TMP) %>%
+      
+      # Remove dummy column
+      select(-TMP)}
+
+  # Make joint metadata file to save to results
+  if (i == 1) {
+    joint_sublib_metadata <- sublib_metadata
+    } else {
+      joint_sublib_metadata <- suppressMessages(full_join(joint_sublib_metadata,
+                                                          sublib_metadata))}
+  
+  # Create path to write output to, if necessary
+  if (!dir.exists(file.path(results_dir, "project", project_id, "metadata"))) {
+    dir.create(file.path(results_dir, "project", project_id, "metadata"),
+               recursive = TRUE)}
+
+  # Write out tsv files for each metadata
+  write_tsv(sublib_metadata, file.path(results_dir, "project", project_id, "metadata", "sublibrary_metadata.tsv"))
+}
+
+# Write out joint file to results
+write_tsv(joint_sublib_metadata, file.path(results_dir, "parse_cohorts_sublibrary_metadata.tsv"))
+```
+
+## Joint standardized sublibrary metadata table
+Here, we display the full sublibrary metadata table across all projects. This table will be saved to: `./results/parse_cohorts_sublibrary_metadata.tsv`.
+
+```{r, echo=TRUE}
+# Interactive Table
+datatable(joint_sublib_metadata,
+          options = list(pageLength = 10,
+                         autoWidth = TRUE,
+                         server = TRUE),
+          filter = "top")
+```
+
+# Read raw sample metadata files
+
+We will organize the sample metadata for information such as tissue type and species, as well as conditions that may be analyzed, to generate individual and joint metadata output files. Note that not all sample metadata columns or conditions are shared across projects, so the joint metadata may contain NAs for some projects.
+
+Standardized individual sample metadata tsv files will be saved in: `results/project/<project_name>/metadata/sample_metadata.tsv` for each project.
+
+```{r read-raw-data-sample, echo=TRUE}
+# Read raw sample metadata
+
+# Standardize sample metadata in terms of ID, project, technology-related, and condition-related columns style/organization
+# Save individual sample metadata files with standardized format
+for (i in seq_along(project_name)) {
+  
+  # Get project name
+  project_id <- project_name[i]
+  
+  # Specify project paths
+  project_input_dir <- file.path(input_dir_parse, project_id, "metadata")
+  sample_input_path <- file.path(project_input_dir, "sample_metadata.tsv")
+  
+  print("Processing project:")
+  print(project_id)
+  
+  # Load sample metadata for project
+  sample_metadata <- read_tsv(sample_input_path, show_col_types = FALSE) %>%
+    
+    # Add metadata columns for sequencing technology info and project info
+    create_common_columns() %>%
+    
+    # Add metadata column for sample species, scATAC data availability, tissue, and condition columns
+    add_column(species = "mouse",
+               scATAC_available = "unknown",
+               tissue = "Cortex",
+               condition_1 = "Genotype",
+               condition_2 = NA) %>%
+    
+    # Update scATAC availability column: Kristen's pilot data is only project known to have scATAC data
+    mutate(scATAC_available = case_when(grepl("Pilot", project_id) ~ "Yes",
+                                        TRUE ~ scATAC_available),
+           
+           # Update tissue for retinal project Otx2_SE2
+           tissue = case_when(grepl("Otx2_SE2", project_id) ~ "Retina",
+                              TRUE ~ tissue),
+           
+           # Update second condition column for projects which have different ages
+           condition_2 = case_when(grepl("Df1_22q11_DS|LgDel|Otx2_SE2", project_id) ~ "Age",
+                              TRUE ~ condition_2))
+
+  # Standardize content of ID columns and condition columns across projects
+  if (project_id %in% c("CDK6", "G34R")) {
+    sample_metadata <- mutate(sample_metadata,
+                              Genotype = Condition,
+                              Age = "E16")}
+  
+  if (project_id %in% c("Df1_22q11_DS", "LgDel")) {
+    sample_metadata <- mutate(sample_metadata,
+                              ID = Sample,
+                              tissue = Region)}
+  
+  if (project_id == "Otx2_SE2") {
+    sample_metadata <- mutate(sample_metadata,
+                              Age = TIMEPOINT,
+                              Genotype = GENOTYPE)}
+  
+  if (project_id == "Pilot") {
+    sample_metadata <- mutate(sample_metadata,
+                              tissue = str_to_title(Brain_region),
+                              Age = paste0(Age_days, " days"))}
+  
+  # Select columns to preserve across metadata
+  sample_metadata <- select(sample_metadata, any_of(keep_columns))
+
+  # Make joint metadata file to save to results
+  if (i == 1) {
+    joint_sample_metadata <- sample_metadata
+    } else {
+      joint_sample_metadata <- suppressMessages(full_join(joint_sample_metadata,
+                                                          sample_metadata))}
+  
+  # Create path to write output to, if necessary
+  if (!dir.exists(file.path(results_dir, "project", project_id, "metadata"))) {
+    dir.create(file.path(results_dir, "project", project_id, "metadata"),
+               recursive = TRUE)}
+
+  # Write out tsv files for each metadata
+  write_tsv(sample_metadata, file.path(results_dir, "project", project_id, "metadata", "sample_metadata.tsv"))
+}
+
+# Write out joint file to results
+write_tsv(joint_sample_metadata, file.path(results_dir, "parse_cohorts_sample_metadata.tsv"))
+```
+
+## Joint standardized sample metadata table
+Here, we display the full sample metadata table across all projects. This table will be saved to: `./results/parse_cohorts_sample_metadata.tsv`.
+
+```{r, echo=TRUE}
+# Interactive Table
+datatable(joint_sample_metadata,
+          options = list(pageLength = 10,
+                         autoWidth = TRUE,
+                         server = TRUE),
+          filter = "top")
+```
+
+# Explore sublibrary and sample metadata across cohorts
+
+## Type of sequencing, kit, and chemistry
+We will investigate which type of sequencing was performed and the Parse kit and chemistry used.
+
+```{r cohort-parse-kit, echo=TRUE}
+# Was nucleus or whole cell used for the sequencing?
+seq_unit_sublib <- sort(unique(joint_sublib_metadata$data_type))
+
+# What type of kit was used?
+kit_sublib <- sort(unique(joint_sublib_metadata$kit))
+
+# What type of chemistry was used?
+seq_technology_assay_sublib <- sort(unique(joint_sublib_metadata$chemistry))
+
+# Which labs generated these projects?
+pi_sublib <- sort(unique(joint_sublib_metadata$PI))
+```
+
+Sequencing was done by using `r seq_unit_sublib` data types. There are `r kit_sublib` kits in the database, using `r seq_technology_assay_sublib` chemistry. Sublibraries are generated by `r pi_sublib ` labs.
+
+## Number of sublibraries per project
+
+```{r, fig.align = "left", results = "asis", message = FALSE, warning = FALSE, echo = FALSE}
+tables1 <- joint_sublib_metadata %>%
+  count(project, PI, PROJECT_LEAD_NAME, data_type, kit, chemistry)
+cat("  \n<div align=\"center\" style=\"font-size:80%\">  \n")
+caption_value <- "Number of sublibraries per project"
+print(knitr::kable(tables1, align = "lcccc", caption = caption_value))
+cat("  \n</div>  \n")
+cat("  \n\\pagebreak  \n")
+```
+
+## Number of samples per project
+
+```{r, fig.align = "left", results = "asis", message = FALSE, warning = FALSE, echo = FALSE}
+tables1 <- joint_sample_metadata %>%
+  count(project, PI, PROJECT_LEAD_NAME, data_type)
+cat("  \n<div align=\"center\" style=\"font-size:80%\">  \n")
+caption_value <- "Number of samples per project"
+print(knitr::kable(tables1, align = "lcccc", caption = caption_value))
+cat("  \n</div>  \n")
+cat("  \n\\pagebreak  \n")
+```
+
+## Number of samples per project, tissue, and genotype
+Here, we investigate the number of samples for each project considering tissue type and genotype.
+
+```{r, fig.align = "left", results = "asis", message = FALSE, warning = FALSE, echo = FALSE}
+tables1 <- joint_sample_metadata %>%
+  count(project, tissue, Genotype)
+cat("  \n<div align=\"center\" style=\"font-size:80%\">  \n")
+caption_value <- "Number of samples per project, tissue, and genotype"
+print(knitr::kable(tables1, align = "lcccc", caption = caption_value))
+cat("  \n</div>  \n")
+cat("  \n\\pagebreak  \n")
+```
+
+## Number of samples per project, tissue, and age
+Here, we investigate the number of samples for each project considering tissue type and age. Note that for the Otx2_SE2 project `Age` and `Timepoint` are equivalent conditions (e.g., timepoint P3 is postnatal age 3 days).
+
+```{r, fig.align = "left", results = "asis", message = FALSE, warning = FALSE, echo = FALSE}
+tables1 <- joint_sample_metadata %>%
+  count(project, tissue, Age)
+cat("  \n<div align=\"center\" style=\"font-size:80%\">  \n")
+caption_value <- "Number of samples per project, tissue, and age"
+print(knitr::kable(tables1, align = "lcccc", caption = caption_value))
+cat("  \n</div>  \n")
+cat("  \n\\pagebreak  \n")
+```
+
+## Number of samples per project, tissue, genotype, and age
+Here, we investigate the number of samples for each project considering tissue type, genotype, and age.
+
+```{r, fig.align = "left", results = "asis", message = FALSE, warning = FALSE, echo = FALSE}
+tables1 <- joint_sample_metadata %>%
+  count(project, tissue, Genotype, Age)
+cat("  \n<div align=\"center\" style=\"font-size:80%\">  \n")
+caption_value <- "Number of samples per project, tissue, genotype, and age"
+print(knitr::kable(tables1, align = "lcccc", caption = caption_value))
+cat("  \n</div>  \n")
+cat("  \n\\pagebreak  \n")
+```
+
+## Summary of projects with scATAC data
+Here, we investigate the projects known to have scATAC sequencing available.
+
+```{r, fig.align = "left", results = "asis", message = FALSE, warning = FALSE, echo = FALSE}
+tables1 <- joint_sample_metadata %>%
+  count(project, scATAC_available)
+cat("  \n<div align=\"center\" style=\"font-size:80%\">  \n")
+caption_value <- "Summary of projects with scATAC data"
+print(knitr::kable(tables1, align = "lcccc", caption = caption_value))
+cat("  \n</div>  \n")
+cat("  \n\\pagebreak  \n")
+```
+
+# Copy sample loading tables to `results` folder for consistent organization
+
+Here we will copy the sample loading tables into the `results/project/<project_name>/metadata` folders. Note that these sample loading tables are generated and filled out by the biologists when they prepare their samples for sequencing. These are never edited by the analyst. This section only copies existing sample loading tables that were provided by the biologists for the corresponding projects.
+
+```{r copy-sample-loading-tables, echo = TRUE}
+for (i in seq_along(project_name)) {
+
+  # Get project name
+  project_id <- project_name[i]
+  print(project_id)
+
+  # Get sample loading table file path
+  loading_table_path <- file.path(project_metadata[i, "sample_loading_table_path"])
+  print(loading_table_path)
+  
+  # Copy sample loading table to results folder
+  file.copy(from = loading_table_path,
+            to = file.path(results_dir, "project", project_id, "metadata", "sample_loading_table.xlsm"),
+            overwrite = TRUE,
+            recursive = FALSE)
+}
+```
+
+# Notes
+This section contains notes which may be relevant for evaluating cohorts for testing.
+
+**CDK6 (Han Lab)** - This cohort is a model of developing brain with three different genotypes. Due to being developing tissue, it generally doesn't produce distinct cell groups/clusters. Rather the UMAP/clustering appears more as a continuum. It does not have curated annotations available currently. DE cell type markers generated from the G34R project could be used for biologically relevant preliminary cell type annotation with the gene markers method.
+
+**G34R (Han Lab)** - This cohort is also a model of developing brain, but with four different genotypes. Like CDK6, clustering/UMAP generate more of a continuum. This data set does have some partial manual curation data available. These manual curations were used to generate a list of cell type markers derived from per-cell-type DE, which can be used for testing biologically relevant gene marker annotations. 
+
+The CDK6 and G34R projects come from the same mouse background, age, and tissue type. These two cohorts have shared cell types as well, so could be used for testing a biologically relevant reference label transfer from one to the other.
+
+Both of the CDK6 and G34R data sets required cell-level filtering cutoffs be raised quite a bit from the minimums (e.g., 300 gene, 500 UMI minimums). We used doublet filtering here as well, providing scDblFinder with a doublet rate of ~3.5% (i.e. dbr = 0.035).
+
+**Pilot (Zakharenko Lab)** - This cohort was initially used simply to look at the potential quality of Parse data before Zakharenko lab order more kits and performed more Parse sequencing. It was originally only analyzed through generating cell-level filtering and QC plots. It has since been run through the downstream snap modules and received some feedback from Kristen. We do not have good data available currently to use for biologically relevant cell type annotations.
+
+**LgDel (Zakharenko Lab)** - This is a model looking at a large deletion model in the 22q11 region. It has both genotype and age data for comparison. For this project, samples from three brain regions were sequenced. Most analysis has been done with the regions separated. Kristen is currently in the process of annotating and generating marker lists for cell types in the Cortex and Thalamus regions, so we will have some gene marker data available eventually, but do not currently. The third region, Hippocampus, is not of as much interest to the lab after all, so is not a focus currently. This cohort seemed to produce a lot of doublets so had to have doublet filtering done across regions (using scDblFinder results with dbr.sd = 1). The different regions produce different quality of data. For example, Thalamus seems to produce lower quality data than Cortex, which has seemed to be true across projects so far. Thalamus also returned fewer cells. We have also observed across project that Cortex generally has less distinct clustering, even after doublet removal, than Thalamus.
+
+**Df1_22q11_DS (Zakharenko Lab)** - This is a model looking at a different deletion model in the 22q11 region. This project also has genotype and age data for comparison. The annotations and gene markers from the LgDel project should be relevant to this project once available. Similar patterns in terms of quality and clustering are observed here as in the LgDel project. This project excluded Hippocampus samples and instead used two sequencing wells per sample for each Thalamus sample to boost cell numbers for Thalamus. We are currently evaluating doublets for this project. It appears we will also have to do fairly high doublet filtering here (again using scDblFinder results with dbr.sd = 1).
+
+**Otx2_SE2 (Dyer Lab)** - This is a model looking at super enhancer deletion impact in developing retina. This data set has genotype and timepoint (aka age) conditions for comparison. There was a mistake in selecting samples for sequencing: instead of two samples per genotype at each timepoint, there is only one Heterozygous P3 sample and three Homozygous P3 samples. Since we have well-annotated retina data, we can generally do biologically relevant gene marker-based annotation and reference label transfer. However, the model has a dramatic effect on eye development and removes/greatly reduces many typical cell populations, causing data quality to appear low. It is also unclear yet if the labels of retinal cell types are fully accurate, as there is potentially unknown cell types in the model. Additionally, clustering is messier compared to typical retina projects we might see. Default Harmony integration had strong effects from Genotype and Age for this dataset, so we tested Seurat integration, which appeared to reduce those effects. Minimal filtering was applied for the sake of preserving as many cells as possible. Note that for this project, sample loading table IDs didn't match sample metadata IDs. Sample IDs generated from the loading table are saved in the `Loading_ID` column in the `sample_metadata.tsv`.
+
+# Approximate project sizes
+Here we will explore the object sizes, cell counts, and read counts for each project. These object sizes and cell numbers are based on filtered, integrated objects (including doublet filtering, if relevant). For Kristen's LgDel project, analyses have been split by region, so full object size of all samples is not available. Additionally, for Df1_22q11_DS filtering is still being finalized, so final object sizes and cell numbers are not available yet.
+
+The read counts are the raw read counts from the fastq files. These numbers are from the `analysis_summary` statistics, specifically the `number_of_reads` values, as described in the [Parse documentation](https://support.parsebiosciences.com/hc/en-us/articles/4415027832724-Pipeline-Analysis-Summary-Statistics-Current-Version). The alignment step is not separated by region for Kristen's projects, so the read counts for `LgDel` and `Df1_22q11_DS` reflect the count across all regions. 
+
+| Lab | Cohort Name | Sublibraries | Samples | Object Size | Number of Cells | Total Raw Read Count |
+|:----------------|:----------------|:----------------|:----------------|:----------------|----------------:|----------------:|
+| Zakharenko | Pilot | 2 | 8 | 2.5 GB | 11,979 | 1,352,726,229 |
+| Han | G34R | 8 | 16 | 11.1 GB | 46,481 | 4,104,280,172 |
+| Han | CDK6 | 8 | 9 | 23.5 GB | 98,210 | 4,258,126,291 |
+| Zakharenko | Df1_22q11_DS | 16 | 64 | Cortex: TBD; Thalamus: TBD | Cortex: TBD; Thalamus: TBD | 11,770,251,970 |
+| Zakharenko | LgDel | 19 | 96 | Cortex: 40.2 GB; Hippocampus: 35.1 GB; Thalamus: 21.9 GB | Cortex: 169,789; Hippocampus: 149,991; Thalamus: 96,508 | 11,383,169,642 |
+| Dyer | Otx2_SE2 | 8 | 12 | 14.8 GB | 76,580 | 2,156,331,969 |
+
+# Links to project folders
+**CDK6**
+smb://jude.stjude.org/developmentalneurobiology/core_operations/Bioinformatics/hangrp/CDK6_E16_Mouse_CTX_snRNAseq
+
+**G34R**
+smb://jude.stjude.org/developmentalneurobiology/core_operations/Bioinformatics/hangrp/G34R_E16_Mouse_CTX_snRNAseq
+
+**Pilot**  
+Original project folder: smb://jude.stjude.org/developmentalneurobiology/core_operations/Bioinformatics/zakhagrp/Parse_snRNAseq
+
+SNAP project folder: smb://jude.stjude.org/developmentalneurobiology/core_operations/Bioinformatics/common/pipeline_development_shared/testing_validation_pipeline/testing_validation_snap/sc-rna-seq-snap-Parse-snRNAseq-pilot
+
+**LgDel**
+smb://jude.stjude.org/developmentalneurobiology/core_operations/Bioinformatics/zakhagrp/LgDel_snRNAseq_Parse
+
+**Df1_22q11_DS**
+smb://jude.stjude.org/developmentalneurobiology/core_operations/Bioinformatics/zakhagrp/Df1_22q11_DS_snRNAseq_Parse
+
+**Otx2_SE2**
+smb://jude.stjude.org/developmentalneurobiology/core_operations/Bioinformatics/dyergrp/Freshour_S/Clemons_M/Otx2_SE2_Parse_scRNAseq
+
+# Potential logic to consider in the pipeline
+**Aligning with top ups (Df1_22q11_DS):**
+I have had one project so far where there was a top up run and I expect it is possible for future projects as well, so it will likely be worthwhile to include logic for top ups in the alignment step.
+
+**Accounting for projects with > 16 sublibraries (LgDel):**
+I have had one project with 19 sublibraries, which required additional parameters provided through a separate file to run the split-pipe combine step as the default parameters for the combine step limit the number of sublibraries to 16.
+
+**Rerunning split-pipe combined after removing sublibraries (Df1_22q11):**
+I have had one project where a sublibrary was removed after looking at the sublibrary QC, so I needed to rerun the split-pipe combine step after removing that sublibrary. I have also had another project where we debated removing sublibraries. Ultimately, we chose not to, but it was a possibility, so I think it might be good to have the ability to rerun the split-pipe combine step, separately from the initial alignment step.
+
+**Order of sublibraries matter (all projects):**
+When running the combine step, Parse assigns sublibrary suffixes to barcodes based on the sublibrary file path order in the list used for the split-pipe combine command. To match barcode suffixes to correct sublibrary for use in downstream QC plots and analysis, must preserve/know the order of sublibraries used for the combine step.
+
+**Ensuring sample names are consistent across metadata and loading table (Otx2_SE2):**
+Alignment uses sample names from the sample loading table when naming output folders. I have run into an example where names that were used in loading table didn't have the exact same format as names used in sample metadata. This needed to be addressed when trying to load alignment results downstream using the list of sample names provided in sample metadata. For the sake of avoiding these issues, maybe it would be worth clarifying that sample names should match across the loading table and sample metadata? Or at least the sample metadata should have a column where the matching names are provided?
+
+**Allowing more customization of scDblFinder parameters (multiple projects inc. CDK6, G34R, LgDel, Df1_22q11_DS):**
+For the upstream analysis, logic for scDblFinder customization of doublet rate parameters (e.g., dbr.sd, dbr, dbr.per1k) would be useful. This has been needed because scDblFinder defaults are set to use 10x doublet rates. Parse's published doublet rate is lower than 10x, but also potentially inaccurate. There is literature that suggests Parse doublet rates can actually be higher than expected. I have used different parameters and rates for different projects based on testing for specific projects and getting feedback from the collaborators, so having the ability to customize which doublet parameter (e.g., dbr.sd, dbr, dbr.per1k) is used and the values provided seems worthwhile to include, if possible.
+
+**Making mitochondrial expression % MAD filtering optional (Otx2_SE2):**
+I have found that using MAD filtering for mitochondria should not be necessarily be included in the default cell-level filtering. Some literature has indicated Parse has globally lower mitochondrial detection than 10x droplet methods. This means mitochondrial expression %s are generally much lower for Parse projects and I have seen that using MAD filtering can potentially set too harsh filtering (e.g., mitochondrial % cutoff = 0). After discussing with Cody, we determined that mitochondrial MAD filtering likely should not be used by default for Parse projects going forward, so making the mitochondrial MAD filtering optional for cell-level filtering would be important.
+
+# Conclusions
+
+| Lab | Cohort Name | Sublibraries | Samples | Tissue | Chemistry | Kit | Notes | cohort_to_use_for_pipeline 
+|:----------------|:----------------|:----------------|:----------------|:----------------|:----------------|:----------------|:----------------|:----------------|
+| Han | G34R | 8 | 16 | Cortex | v3 | WT | Increased from minimum filtering; doublet removal (not high) | Testing 1 |
+| Zakharenko | Df1_22q11_DS | 16 | 64 | Cortex, Thalamus | v3 | WT_mega | Top-ups; doublet removal (high) expected | Testing 2 |
+| Zakharenko | LgDel | 19 | 96 | Cortex, Hippocampus, Thalamus | v3 | WT_mega | >16 sublibraries; doublet removal (high) | Testing 3 |
+| Dyer | Otx2_SE2 | 8 | 12 | Retina | v3 | WT | Minimum filtering; removed MAD for mtDNA; sample loading IDs don't match sample metadata IDs | Testing 4 |
+| Han | CDK6 | 8 | 9 | Cortex | v3 | WT | Increased from minimum filtering; doublet removal (not high) | Testing 5 |
+| Zakharenko | Pilot | 2 | 8 | Cerebellum, Cortex, Hippocampus, Thalamus | v2 | WT_mini | -- | Testing 6 |
+
+# References
+**Parse doublets:**  
+1. [Parse Biosciences, What is the expected doublet rate?](https://support.parsebiosciences.com/hc/en-us/articles/360053107311-What-is-the-expected-doublet-rate).  
+2. [Filippov et al., Comparative transcriptomic analyses of thymocytes using 10x Genomics and Parse scRNA-seq technologies. BMC Genomics, 2024](https://doi.org/10.1186/s12864-024-10976-x).  
+
+**Parse mitochondrial detection and expression %:**  
+3. [Gezelius et al., Comparison of high-throughput single-cell RNA-seq methods for ex vivo drug screening. NAR Genomics and Bioinformatics, 2024](https://doi.org/10.1093/nargab/lqae001).  
+4. [Hatje et al., Comparison of single-cell RNA-seq methods to enable transcriptome profiling of neutrophils in clinical samples. Cell Reports Methods, 2025](https://doi.org/10.1016/j.crmeth.2025.101173).  
+5. [De Simone et al., Comparative Analysis of Commercial Single-Cell RNA Sequencing Technologies. bioRxiv, 2025](https://doi.org/10.1101/2024.06.18.599579).
+
+
+```{r echo=FALSE}
+detach(params)
+```
+
+\pagebreak
+
+# Session Info
+```{r echo=FALSE}
+sessionInfo()
+```

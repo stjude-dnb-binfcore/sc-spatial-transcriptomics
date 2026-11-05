@@ -1,0 +1,206 @@
+ID	project	data_type	seq_technology	kit	chemistry	species	tissue	Genotype	Age	scATAC_available	PI	PROJECT_LEAD_NAME	condition_1	condition_2	Sex	Loading_ID
+sample_28	CDK6	snRNAseq	Parse	WT	v3	mouse	Cortex	SmoM2	E16	unknown	Han	Neha Sarodaya	Genotype	NA	NA	NA
+sample_30	CDK6	snRNAseq	Parse	WT	v3	mouse	Cortex	WT	E16	unknown	Han	Neha Sarodaya	Genotype	NA	NA	NA
+sample_32	CDK6	snRNAseq	Parse	WT	v3	mouse	Cortex	SmoM2_CDK6_KO	E16	unknown	Han	Neha Sarodaya	Genotype	NA	NA	NA
+sample_42	CDK6	snRNAseq	Parse	WT	v3	mouse	Cortex	WT	E16	unknown	Han	Neha Sarodaya	Genotype	NA	NA	NA
+sample_45	CDK6	snRNAseq	Parse	WT	v3	mouse	Cortex	WT	E16	unknown	Han	Neha Sarodaya	Genotype	NA	NA	NA
+sample_46	CDK6	snRNAseq	Parse	WT	v3	mouse	Cortex	SmoM2	E16	unknown	Han	Neha Sarodaya	Genotype	NA	NA	NA
+sample_47	CDK6	snRNAseq	Parse	WT	v3	mouse	Cortex	SmoM2_CDK6_KO	E16	unknown	Han	Neha Sarodaya	Genotype	NA	NA	NA
+sample_49	CDK6	snRNAseq	Parse	WT	v3	mouse	Cortex	SmoM2_CDK6_KO	E16	unknown	Han	Neha Sarodaya	Genotype	NA	NA	NA
+sample_50	CDK6	snRNAseq	Parse	WT	v3	mouse	Cortex	SmoM2	E16	unknown	Han	Neha Sarodaya	Genotype	NA	NA	NA
+COR972	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	Het	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+COR974	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	WT	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+COR967	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	WT	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+COR971	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	Het	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+COR975	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	WT	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+COR978	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	WT	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+COR980	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	Het	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+COR982	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	Het	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+COR983	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	Het	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+COR990	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	WT	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+COR992	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	WT	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+COR994	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	Het	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+COR985	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	WT	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+COR987	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	Het	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+COR989	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	Het	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+COR991	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	WT	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+COR038	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	WT	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+COR040	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	Het	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+COR033	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	WT	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+COR046	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	WT	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+COR048	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	Het	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+COR050	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	WT	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+COR052	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	WT	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+COR039	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	WT	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+COR041	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	WT	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+COR043	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	WT	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+COR085	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	Het	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+COR087	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	Het	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+COR420	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	Het	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+COR089	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	Het	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+COR091	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	Het	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+COR422	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	Het	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+WTR972	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	Het	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+WTR974	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	WT	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+WTR967	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	WT	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+WTR971	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	Het	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+WTR975	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	WT	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+WTR978	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	WT	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+WTR980	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	Het	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+WTR982	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	Het	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+WTR983	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	Het	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+WTR990	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	WT	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+WTR992	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	WT	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+WTR994	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	Het	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+WTR985	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	WT	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+WTR987	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	Het	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+WTR989	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	Het	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+WTR991	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	WT	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+WTR038	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	WT	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+WTR040	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	Het	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+WTR033	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	WT	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+WTR046	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	WT	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+WTR048	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	Het	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+WTR050	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	WT	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+WTR052	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	WT	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+WTR039	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	WT	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+WTR041	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	WT	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+WTR043	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	WT	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+WTR085	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	Het	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+WTR087	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	Het	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+WTR420	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	Het	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+WTR089	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	Het	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+WTR091	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	Het	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+WTR422	Df1_22q11_DS	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	Het	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+sample_1	G34R	snRNAseq	Parse	WT	v3	mouse	Cortex	SmoM2_G34R_p53	E16	unknown	Han	Kris Olesen	Genotype	NA	NA	NA
+sample_2	G34R	snRNAseq	Parse	WT	v3	mouse	Cortex	SmoM2_G34R	E16	unknown	Han	Kris Olesen	Genotype	NA	NA	NA
+sample_3	G34R	snRNAseq	Parse	WT	v3	mouse	Cortex	WT	E16	unknown	Han	Kris Olesen	Genotype	NA	NA	NA
+sample_4	G34R	snRNAseq	Parse	WT	v3	mouse	Cortex	SmoM2	E16	unknown	Han	Kris Olesen	Genotype	NA	NA	NA
+sample_7	G34R	snRNAseq	Parse	WT	v3	mouse	Cortex	WT	E16	unknown	Han	Kris Olesen	Genotype	NA	NA	NA
+sample_8	G34R	snRNAseq	Parse	WT	v3	mouse	Cortex	SmoM2_G34R_p53	E16	unknown	Han	Kris Olesen	Genotype	NA	NA	NA
+sample_19	G34R	snRNAseq	Parse	WT	v3	mouse	Cortex	WT	E16	unknown	Han	Kris Olesen	Genotype	NA	NA	NA
+sample_10	G34R	snRNAseq	Parse	WT	v3	mouse	Cortex	SmoM2	E16	unknown	Han	Kris Olesen	Genotype	NA	NA	NA
+sample_20	G34R	snRNAseq	Parse	WT	v3	mouse	Cortex	SmoM2_G34R_p53	E16	unknown	Han	Kris Olesen	Genotype	NA	NA	NA
+sample_23	G34R	snRNAseq	Parse	WT	v3	mouse	Cortex	SmoM2	E16	unknown	Han	Kris Olesen	Genotype	NA	NA	NA
+sample_34	G34R	snRNAseq	Parse	WT	v3	mouse	Cortex	SmoM2	E16	unknown	Han	Kris Olesen	Genotype	NA	NA	NA
+sample_35	G34R	snRNAseq	Parse	WT	v3	mouse	Cortex	SmoM2	E16	unknown	Han	Kris Olesen	Genotype	NA	NA	NA
+sample_39	G34R	snRNAseq	Parse	WT	v3	mouse	Cortex	SmoM2_G34R	E16	unknown	Han	Kris Olesen	Genotype	NA	NA	NA
+sample_40	G34R	snRNAseq	Parse	WT	v3	mouse	Cortex	WT	E16	unknown	Han	Kris Olesen	Genotype	NA	NA	NA
+sample_41	G34R	snRNAseq	Parse	WT	v3	mouse	Cortex	SmoM2_G34R	E16	unknown	Han	Kris Olesen	Genotype	NA	NA	NA
+sample_42	G34R	snRNAseq	Parse	WT	v3	mouse	Cortex	WT	E16	unknown	Han	Kris Olesen	Genotype	NA	NA	NA
+CXR626	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	Het	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+CXR628	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	WT	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+CXR658	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	WT	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+CXR660	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	Het	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+CXR630	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	Het	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+CXR632	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	WT	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+CXR668	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	Het	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+CXR670	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	WT	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+CXR672	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	WT	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+CXR674	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	Het	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+CXR640	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	Het	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+CXR644	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	WT	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+CXR678	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	WT	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+CXR680	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	Het	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+CXR642	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	Het	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+CXR646	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	WT	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+CXR727	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	WT	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+CXR729	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	Het	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+CXR699	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	Het	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+CXR701	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	WT	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+CXR703	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	WT	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+CXR705	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	Het	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+CXR731	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	WT	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+CXR733	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	Het	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+CXR707	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	WT	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+CXR709	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	Het	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+CXR747	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	WT	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+CXR749	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	Het	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+CXR751	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	Het	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+CXR753	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	WT	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+CXR711	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	WT	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+CXR713	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Cortex	Het	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+HPR658	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Hippocampus	WT	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+HPR660	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Hippocampus	Het	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+HPR630	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Hippocampus	Het	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+HPR632	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Hippocampus	WT	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+HPR626	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Hippocampus	Het	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+HPR628	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Hippocampus	WT	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+HPR668	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Hippocampus	Het	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+HPR670	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Hippocampus	WT	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+HPR672	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Hippocampus	WT	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+HPR674	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Hippocampus	Het	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+HPR640	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Hippocampus	Het	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+HPR644	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Hippocampus	WT	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+HPR678	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Hippocampus	WT	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+HPR680	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Hippocampus	Het	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+HPR642	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Hippocampus	Het	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+HPR646	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Hippocampus	WT	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+HPR727	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Hippocampus	WT	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+HPR729	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Hippocampus	Het	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+HPR699	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Hippocampus	Het	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+HPR701	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Hippocampus	WT	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+HPR703	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Hippocampus	WT	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+HPR705	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Hippocampus	Het	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+HPR731	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Hippocampus	WT	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+HPR733	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Hippocampus	Het	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+HPR707	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Hippocampus	WT	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+HPR709	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Hippocampus	Het	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+HPR747	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Hippocampus	WT	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+HPR749	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Hippocampus	Het	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+HPR751	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Hippocampus	Het	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+HPR753	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Hippocampus	WT	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+HPR711	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Hippocampus	WT	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+HPR713	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Hippocampus	Het	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+THR626	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	Het	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+THR628	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	WT	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+THR658	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	WT	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+THR660	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	Het	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+THR630	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	Het	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+THR632	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	WT	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+THR668	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	Het	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+THR670	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	WT	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+THR672	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	WT	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+THR674	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	Het	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+THR640	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	Het	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+THR644	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	WT	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+THR678	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	WT	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+THR680	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	Het	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+THR642	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	Het	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+THR646	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	WT	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	F	NA
+THR727	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	WT	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+THR729	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	Het	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+THR699	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	Het	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+THR701	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	WT	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+THR703	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	WT	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+THR705	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	Het	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+THR731	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	WT	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+THR733	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	Het	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+THR707	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	WT	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+THR709	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	Het	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+THR747	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	WT	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+THR749	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	Het	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+THR751	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	Het	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+THR753	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	WT	2 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+THR711	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	WT	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+THR713	LgDel	snRNAseq	Parse	WT_mega	v3	mouse	Thalamus	Het	4 mo	unknown	Zakharenko	Kristen Thomas	Genotype	Age	M	NA
+P3_AM_1	Otx2_SE2	scRNAseq	Parse	WT	v3	mouse	Retina	Homozygous	P3	unknown	Dyer	Mellisa Clemons	Genotype	Age	NA	1_p3
+P3_AM_5	Otx2_SE2	scRNAseq	Parse	WT	v3	mouse	Retina	Homozygous	P3	unknown	Dyer	Mellisa Clemons	Genotype	Age	NA	5_p3
+P3_T_27	Otx2_SE2	scRNAseq	Parse	WT	v3	mouse	Retina	Heterozygous	P3	unknown	Dyer	Mellisa Clemons	Genotype	Age	NA	27_p3
+P3_T_28	Otx2_SE2	scRNAseq	Parse	WT	v3	mouse	Retina	Homozygous	P3	unknown	Dyer	Mellisa Clemons	Genotype	Age	NA	28_p3
+P7_U_8_1	Otx2_SE2	scRNAseq	Parse	WT	v3	mouse	Retina	Heterozygous	P7	unknown	Dyer	Mellisa Clemons	Genotype	Age	NA	8-1_p7
+P7_U_8_5	Otx2_SE2	scRNAseq	Parse	WT	v3	mouse	Retina	Homozygous	P7	unknown	Dyer	Mellisa Clemons	Genotype	Age	NA	8-5_p7
+P7_9_54	Otx2_SE2	scRNAseq	Parse	WT	v3	mouse	Retina	Homozygous	P7	unknown	Dyer	Mellisa Clemons	Genotype	Age	NA	54_p7
+P7_9_58	Otx2_SE2	scRNAseq	Parse	WT	v3	mouse	Retina	Heterozygous	P7	unknown	Dyer	Mellisa Clemons	Genotype	Age	NA	58_p7
+P10_U_8_3	Otx2_SE2	scRNAseq	Parse	WT	v3	mouse	Retina	Heterozygous	P10	unknown	Dyer	Mellisa Clemons	Genotype	Age	NA	8-3_p10
+P10_U_8_6	Otx2_SE2	scRNAseq	Parse	WT	v3	mouse	Retina	Homozygous	P10	unknown	Dyer	Mellisa Clemons	Genotype	Age	NA	8-6_p10
+P10_AG_8_45	Otx2_SE2	scRNAseq	Parse	WT	v3	mouse	Retina	Homozygous	P10	unknown	Dyer	Mellisa Clemons	Genotype	Age	NA	8-45_p10
+P10_AG_8_47	Otx2_SE2	scRNAseq	Parse	WT	v3	mouse	Retina	Heterozygous	P10	unknown	Dyer	Mellisa Clemons	Genotype	Age	NA	8-47_p10
+CTX809	Pilot	snRNAseq	Parse	WT_mini	v2	mouse	Cortex	WT	64 days	Yes	Zakharenko	Kristen Thomas	Genotype	NA	M	NA
+CTX813	Pilot	snRNAseq	Parse	WT_mini	v2	mouse	Cortex	Het	64 days	Yes	Zakharenko	Kristen Thomas	Genotype	NA	M	NA
+HIP809	Pilot	snRNAseq	Parse	WT_mini	v2	mouse	Hippocampus	WT	64 days	Yes	Zakharenko	Kristen Thomas	Genotype	NA	M	NA
+HIP813	Pilot	snRNAseq	Parse	WT_mini	v2	mouse	Hippocampus	Het	64 days	Yes	Zakharenko	Kristen Thomas	Genotype	NA	M	NA
+THA809	Pilot	snRNAseq	Parse	WT_mini	v2	mouse	Thalamus	WT	64 days	Yes	Zakharenko	Kristen Thomas	Genotype	NA	M	NA
+THA813	Pilot	snRNAseq	Parse	WT_mini	v2	mouse	Thalamus	Het	64 days	Yes	Zakharenko	Kristen Thomas	Genotype	NA	M	NA
+CBC809	Pilot	snRNAseq	Parse	WT_mini	v2	mouse	Cerebellum	WT	64 days	Yes	Zakharenko	Kristen Thomas	Genotype	NA	M	NA
+CBC813	Pilot	snRNAseq	Parse	WT_mini	v2	mouse	Cerebellum	Het	64 days	Yes	Zakharenko	Kristen Thomas	Genotype	NA	M	NA

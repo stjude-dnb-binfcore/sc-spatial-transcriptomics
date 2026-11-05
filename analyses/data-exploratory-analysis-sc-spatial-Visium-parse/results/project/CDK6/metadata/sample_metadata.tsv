@@ -1,0 +1,10 @@
+ID	project	data_type	seq_technology	kit	chemistry	species	tissue	Genotype	Age	scATAC_available	PI	PROJECT_LEAD_NAME	condition_1	condition_2
+sample_28	CDK6	snRNAseq	Parse	WT	v3	mouse	Cortex	SmoM2	E16	unknown	Han	Neha Sarodaya	Genotype	NA
+sample_30	CDK6	snRNAseq	Parse	WT	v3	mouse	Cortex	WT	E16	unknown	Han	Neha Sarodaya	Genotype	NA
+sample_32	CDK6	snRNAseq	Parse	WT	v3	mouse	Cortex	SmoM2_CDK6_KO	E16	unknown	Han	Neha Sarodaya	Genotype	NA
+sample_42	CDK6	snRNAseq	Parse	WT	v3	mouse	Cortex	WT	E16	unknown	Han	Neha Sarodaya	Genotype	NA
+sample_45	CDK6	snRNAseq	Parse	WT	v3	mouse	Cortex	WT	E16	unknown	Han	Neha Sarodaya	Genotype	NA
+sample_46	CDK6	snRNAseq	Parse	WT	v3	mouse	Cortex	SmoM2	E16	unknown	Han	Neha Sarodaya	Genotype	NA
+sample_47	CDK6	snRNAseq	Parse	WT	v3	mouse	Cortex	SmoM2_CDK6_KO	E16	unknown	Han	Neha Sarodaya	Genotype	NA
+sample_49	CDK6	snRNAseq	Parse	WT	v3	mouse	Cortex	SmoM2_CDK6_KO	E16	unknown	Han	Neha Sarodaya	Genotype	NA
+sample_50	CDK6	snRNAseq	Parse	WT	v3	mouse	Cortex	SmoM2	E16	unknown	Han	Neha Sarodaya	Genotype	NA
