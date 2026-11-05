@@ -1,0 +1,3 @@
+ID	Sample_name	Slide_ID	Slide_ID_Visium	Species	Donor_ID	DiseaseType	Tissue_type	Tissue_prep	Details_1	Condition	Platform	Panel	SRM2_number	capture_area	illumina_folder	Genotype	Age
+848935_HD_BM_WM_C_STJ_AK_BlockB_R1	848935_HD_BM_WM_C_STJ_AK_BlockB_R1	Block B A1	H1-39XBXGY	Hm	Patient_1	cancer	bone marrow	FFPE	two section per slide	Case	VHD	WTX	848935	A1	3386616	NA	NA
+848935_HD_BM_WM_C_STJ_AK_BlockD_R1	848935_HD_BM_WM_C_STJ_AK_BlockD_R1	Block D D1	H1-39XBXGY	Hm	Patient_2	cancer	bone marrow	FFPE	two section per slide	Control	VHD	WTX	848935	D1	3386617	NA	NA

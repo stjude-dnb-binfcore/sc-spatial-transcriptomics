@@ -1,0 +1,5 @@
+ID	project	data_type	seq_technology	kit	chemistry	species	tissue	Genotype	Age	scATAC_available	PI	PROJECT_LEAD_NAME	condition_1	condition_2	Slide_ID	Slide_ID_Visium	capture_area	illumina_folder	Platform	Panel	SRM2_number	Condition	Donor_ID
+846531_HD_BA_WM_C_DNB_SM_D63_1_R1	Tuyu_SRM846531	NA	NA	NA	NA	mouse	Brain	NA	NA	NA	NA	NA	NA	NA	D63_1	H1-HGCHDYX	A1	3419918	Visium HD	Mouse_GFP spike in	846531	NA	NA
+846531_HD_BA_WM_C_DNB_SM_D63_5_R1	Tuyu_SRM846531	NA	NA	NA	NA	mouse	Brain	NA	NA	NA	NA	NA	NA	NA	D63_5	H1-HGCHDYX	D1	3419919	Visium HD	Mouse_GFP spike in	846531	NA	NA
+846531_HD_BA_WM_C_DNB_SM_D85_4_R1	Tuyu_SRM846531	NA	NA	NA	NA	mouse	Brain	NA	NA	NA	NA	NA	NA	NA	D85_4	H1-8X3CTJ4	D1	3419921	Visium HD	Mouse_GFP spike in	846531	NA	NA
+846531_HD_BA_WM_C_DNB_SM_D95_5_R1	Tuyu_SRM846531	NA	NA	NA	NA	mouse	Brain	NA	NA	NA	NA	NA	NA	NA	D85_5	H1-8X3CTJ4	A1	3419920	Visium HD	Mouse_GFP spike in	846531	NA	NA

@@ -1,9 +1,9 @@
 # the following parameters are the same across the project and might be needed in more than one module #
-root_dir: "/sc-spatial-transcriptomics" # Absolute path to the main dir of the project where GitHub repo lives
+root_dir: "/mnt/scratch2/Maycon/sc-spatial-transcriptomics" # Absolute path to the main dir of the project where GitHub repo lives
 data_dir: "/sc-spatial-transcriptomics/analyses/cellranger-analysis/results/02_cellranger_count/DefaultParameters" # Absolute path to data dir of the project with CellRanger output results. Options: "DefaultParameters", "ForcedCells8000Parameters", or else. 
 metadata_dir: "/sc-spatial-transcriptomics/data/project_metadata" # Absolute path to metadata dir of the project. File name always named as: `project_metadata.tsv`.
 metadata_file: "project_metadata.tsv" # Options: "project_metadata.tsv" (default) or name as user wants. It needs to be in `tsv` format. It can include one or more samples, as long as it contains at least the following columns in this exact order: `ID`, `SAMPLE`, and `FASTQ`. The `ID` column must contain unique values. Additional metadata columns can be added and arranged as needed by the user (though not required). For samples with multiple technical replicates, list all associated FASTQ file paths in the same row, using commas to separate each path.
-genome_name: "GRCm39" # define genome reference and versioning. Options: (1) human: "GRCh38" and "hg19"; (2) mouse: "GRCm39", "mm10", and "mm9"; and (3) dual index genomes: "GRCh38ANDGRCm39", "GRCh38_mm10", and "GRCh38_mm9".
+genome_name: "GRCh38" # ACTIVE downstream profile: human (Dyer_SRM854274, Kennedy_SRM848935). For Tuyu mouse use GRCm39 (see block at end of file).
 PROJECT_NAME: "PROJECT_NAME"
 PI_NAME: "PI_NAME"
 TASK_ID: "Development of sc-Spatial Transcriptomics workflow - Testing Phase"
@@ -19,8 +19,8 @@ COMPLETION_DATE: "ONGOING"
 # `./analyses/...-analysis` - TO UPDATE ACCORDINGLY - EXAMPLE----
 genome_reference_path: "./" # Absolute path to genome reference to be used for the `cellranger-analysis` module
 cellranger_parameters: "DefaultParameters" # Options: "DefaultParameters", "ForcedCells8000Parameters", or else
-genome_name_cellranger: "GRCm39" # define the genome of preference for dual genomes. In case for single genomes, please use the same as used for `genome_name`.
-create_bam_value: "true" # Options: "true" (default) or "false". For non-human experiments, we recommend setting this to 'false' to reduce memory usage per project.
+genome_name_cellranger: "GRCh38" # Match `genome_name` for the active cohort profile.
+create_bam_value: "true" # Human cohorts: true. For mouse (Tuyu), prefer false to reduce memory (see profile block at end).
 # Define the sample ID prefix(es) used in this project.
 # Sample IDs should follow a format like: PREFIX001 (e.g., DYE001, ABC002).
 # You can specify multiple prefixes if your project uses more than one.
@@ -53,7 +53,7 @@ num_dim_seurat_qc: 30 # number of PCs to use in UMAP. For multiple variations, u
 num_neighbors_seurat_qc: 30 # number of neighbors to use in UMAP. For multiple variations, use: [10, 20, 30]
 soup_fraction_value_default: 0.05 # set rho default value to use if estimated rho is > 20%
 assay_filter_object: "RNA"  # Options: "RNA" (default) or "RNA_SoupX"
-genome_name_upstream: "GRCm39" # Options for the `Genome_Specific_Cell_Cycle_Scoring` function: (1) human: "GRCh38" and "hg19"; (2) mouse: "GRCm39", "mm10", and "mm9"; and (3) dual index genomes: "DualGRCh38", "Dualhg19", "DualGRCm39", "Dualmm10", and "Dualmm9".
+genome_name_upstream: "GRCh38" # Match active cohort profile; use GRCm39 for Tuyu mouse. (1) human: "GRCh38" and "hg19"; (2) mouse: "GRCm39", "mm10", and "mm9"; and (3) dual index genomes: "DualGRCh38", "Dualhg19", "DualGRCm39", "Dualmm10", and "Dualmm9".
 
 
 num_dim_filter_object: 30 # set one value for `04_run_filter_object.Rmd`
@@ -88,4 +88,41 @@ variable_value: "ID"
 reference_list_value: NULL
 PCA_Feature_List_value: NULL
 future_globals_value_integrative: 200 # Default. Adjust based on dataset size and available memory. See `future_globals_value_upstream` in the `upstream-analysis` module for more details.
+
+# `./analyses/data-exploratory-analysis-sc-spatial-Visium-parse` ----
+metadata_dir_parse: "/mnt/scratch2/Maycon/sc-spatial-transcriptomics/analyses/data-exploratory-analysis-sc-spatial-Visium-parse/input/project-metadata"
+sample_loading_table_metadata_file: "loading_paths_by_project.tsv"
+raw_input_dir_parse: "/mnt/scratch2/Maycon/sc-spatial-transcriptomics/analyses/data-exploratory-analysis-sc-spatial-Visium-parse/input/raw/project"
+keep_columns_sample:
+  - ID
+  - project
+  - data_type
+  - seq_technology
+  - kit
+  - chemistry
+  - species
+  - tissue
+  - Genotype
+  - Age
+  - scATAC_available
+  - PI
+  - PROJECT_LEAD_NAME
+  - condition_1
+  - condition_2
+  - Slide_ID
+  - Slide_ID_Visium
+  - capture_area
+  - illumina_folder
+  - Platform
+  - Panel
+  - SRM2_number
+  - Condition
+  - Donor_ID
+PROJECT_NAME_parse: "Visium HD cohorts — Tuyu, Dyer neuroblastoma, Kennedy BM"
+PI_NAME_parse: "Center for Spatial Omics (multi-PI)"
+LEAD_ANALYSTS_parse: "Maycon Marção, Msc"
+
+# --- Cohort genome profiles (switch ACTIVE values above when changing downstream analysis) ---
+# Mouse — Tuyu_SRM846531: genome_name / genome_name_cellranger / genome_name_upstream = GRCm39; create_bam_value = false
+# Human — Dyer_SRM854274, Kennedy_SRM848935: genome_name* = GRCh38; create_bam_value = true
 

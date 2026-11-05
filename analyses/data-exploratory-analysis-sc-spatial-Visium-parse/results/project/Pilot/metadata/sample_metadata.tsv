@@ -1,9 +1,0 @@
-ID	project	data_type	seq_technology	kit	chemistry	species	tissue	Genotype	Age	scATAC_available	PI	PROJECT_LEAD_NAME	condition_1	condition_2	Sex
-CTX809	Pilot	snRNAseq	Parse	WT_mini	v2	mouse	Cortex	WT	64 days	Yes	Zakharenko	Kristen Thomas	Genotype	NA	M
-CTX813	Pilot	snRNAseq	Parse	WT_mini	v2	mouse	Cortex	Het	64 days	Yes	Zakharenko	Kristen Thomas	Genotype	NA	M
-HIP809	Pilot	snRNAseq	Parse	WT_mini	v2	mouse	Hippocampus	WT	64 days	Yes	Zakharenko	Kristen Thomas	Genotype	NA	M
-HIP813	Pilot	snRNAseq	Parse	WT_mini	v2	mouse	Hippocampus	Het	64 days	Yes	Zakharenko	Kristen Thomas	Genotype	NA	M
-THA809	Pilot	snRNAseq	Parse	WT_mini	v2	mouse	Thalamus	WT	64 days	Yes	Zakharenko	Kristen Thomas	Genotype	NA	M
-THA813	Pilot	snRNAseq	Parse	WT_mini	v2	mouse	Thalamus	Het	64 days	Yes	Zakharenko	Kristen Thomas	Genotype	NA	M
-CBC809	Pilot	snRNAseq	Parse	WT_mini	v2	mouse	Cerebellum	WT	64 days	Yes	Zakharenko	Kristen Thomas	Genotype	NA	M
-CBC813	Pilot	snRNAseq	Parse	WT_mini	v2	mouse	Cerebellum	Het	64 days	Yes	Zakharenko	Kristen Thomas	Genotype	NA	M

@@ -1,0 +1,11 @@
+# Reconstructed from Data/Processed/*/_cmdline (Space Ranger 4.0.1)
+spaceranger: /mnt/scratch1/spaceranger/spaceranger-4.0.1/bin/spaceranger
+transcriptome: /mnt/scratch1/spaceranger/refdata-gex-GRCh38-2024-A
+probe_set: /mnt/scratch1/spaceranger/Visium_Human_Transcriptome_Probe_Set_v2.1.0_GRCh38-2024-A.csv
+fastqs_root: /media/ResearchHome/plummgrp/home/common/CSO-Dir/Files/StJude/Visium/848935_Kennedy_Bone_Marrow/Data/Raw/
+images_root: /media/ResearchHome/plummgrp/home/common/CSO-Dir/Files/StJude/Visium/848935_Kennedy_Bone_Marrow/Data/WetLabNotes/Images/
+output_root: /media/ResearchHome/plummgrp/home/common/CSO-Dir/Files/StJude/Visium/848935_Kennedy_Bone_Marrow/Data/Processed/
+species: human
+localcores: 32
+localmem: 128
+create_bam: true

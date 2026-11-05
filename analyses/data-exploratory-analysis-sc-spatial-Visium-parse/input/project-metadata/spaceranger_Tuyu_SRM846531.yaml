@@ -1,0 +1,36 @@
+# Required paths
+spaceranger: /mnt/scratch2/Visium/spaceranger-3.1.2/bin/spaceranger
+transcriptome: /media/ResearchHome/plummgrp/home/common/CSO-Dir/Files/StJude/Visium/Mackgrp/SMack_FF_IF_Tuyu/Scripts/mm10_with_EGFP/
+probe_set: /media/ResearchHome/plummgrp/home/common/CSO-Dir/Files/StJude/Visium/Mackgrp/SMack_FF_IF_Tuyu/Scripts/mm10_probe_set_v2_with_egfp.v2.csv
+
+# Input roots
+fastqs_root: /media/ResearchHome/plummgrp/home/common/CSO-Dir/Files/StJude/Visium/Mackgrp/SMack_FxF_IF_Tuyu_1-14-26/Data/Raw/
+images_root: /media/ResearchHome/plummgrp/home/common/CSO-Dir/Files/StJude/Visium/Mackgrp/SMack_FxF_IF_Tuyu_1-14-26/Data/WetLabNotes/Images/
+output_root: /media/ResearchHome/plummgrp/home/common/CSO-Dir/Files/StJude/Visium/Mackgrp/SMack_FxF_IF_Tuyu_1-14-26/Data/Processed/IF_registered/
+
+# Metadata (used to extract Slide_ID_Visium and Sample_name)
+wetlab_metadata: /media/ResearchHome/plummgrp/home/common/CSO-Dir/Files/StJude/Visium/Mackgrp/SMack_FxF_IF_Tuyu_1-14-26/Data/WetLabNotes/LabSheet/wetlab_metadata_SRM846531.csv
+
+
+# Resources
+localcores: 32
+localmem: 128
+create_bam: true
+filter_probes: true
+
+# Auto-detect companion files in the same folder as the matched cytaimage.
+# For example:
+#   main cytaimage      -> *-A1-*.tif      (excluding *_IF.tif)
+#   colorizedimage      -> *-A1-*_IF.tif
+#   loupe-alignment     -> *-A1-fiducials-image-registration.json
+# Same logic applies for D1.
+auto_find_colorizedimage: true
+auto_find_loupe_alignment: true
+
+# Optional: add any extra spaceranger count arguments here exactly as typed on command line
+# Example:
+# spaceranger_extra_args: "--unknown-slide=visium-1 --reorient-images=true"
+spaceranger_extra_args: ""
+
+# Module note (Tuyu exploratory input): Space Ranger count uses one Illumina folder per sample.
+# Effective fastqs_root for this cohort: .../Data/Raw/plummgrp_868168_10XVisium-1/ (not Data/Raw/ alone).

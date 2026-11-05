@@ -1,0 +1,3 @@
+ID	project	data_type	seq_technology	kit	chemistry	species	tissue	Genotype	Age	scATAC_available	PI	PROJECT_LEAD_NAME	condition_1	condition_2	Slide_ID	Slide_ID_Visium	capture_area	illumina_folder	Platform	Panel	SRM2_number	Condition	Donor_ID
+848935_HD_BM_WM_C_STJ_AK_BlockB_R1	Kennedy_SRM848935	NA	NA	NA	NA	human	bone marrow	NA	NA	NA	NA	NA	NA	NA	Block B A1	H1-39XBXGY	A1	3386616	VHD	WTX	848935	Case	Patient_1
+848935_HD_BM_WM_C_STJ_AK_BlockD_R1	Kennedy_SRM848935	NA	NA	NA	NA	human	bone marrow	NA	NA	NA	NA	NA	NA	NA	Block D D1	H1-39XBXGY	D1	3386617	VHD	WTX	848935	Control	Patient_2

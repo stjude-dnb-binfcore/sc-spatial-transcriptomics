@@ -1,0 +1,3 @@
+ID	Sample_name	Slide_ID	Slide_ID_Visium	Species	Donor_ID	DiseaseType	Tissue_type	Tissue_prep	Details_1	Condition	Platform	Panel	SRM2_number	capture_area	illumina_folder	Genotype	Age
+854274_Dyer_A1	854274_Dyer_A1	MAST394C13A1	H1-J8V7VWN	Hm	NA	cancer	neuroblastoma	FFPE	two section per slide	NA	Visium HD	Human transcriptome probe set v2.1	854274	A1	3375451	NA	NA
+854274_Dyer_D1	854274_Dyer_D1	MAST9714D1	H1-J8V7VWN	Hm	NA	cancer	neuroblastoma	FFPE	two section per slide	NA	Visium HD	Human transcriptome probe set v2.1	854274	D1	3375452	NA	NA

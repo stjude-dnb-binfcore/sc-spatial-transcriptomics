@@ -1,7 +1,4 @@
 project	sample_loading_table_path
-CDK6	/research_jude/rgs01_jude/dept/DNB/core_operations/Bioinformatics/hangrp/CDK6_E16_Mouse_CTX_snRNAseq/metadata/CDK6_Parse_loading_table.xlsm
-G34R	/research_jude/rgs01_jude/dept/DNB/core_operations/Bioinformatics/hangrp/G34R_E16_Mouse_CTX_snRNAseq/metadata/G34R_Parse_loading_table.xlsm
-Pilot	/research_jude/rgs01_jude/dept/DNB/core_operations/Bioinformatics/zakhagrp/Parse_snRNAseq/WT_Mini_Sample_Loading_Table_v2_Kristen_9_26_24.xlsm
-LgDel	/research_jude/rgs01_jude/dept/DNB/core_operations/Bioinformatics/zakhagrp/LgDel_snRNAseq_Parse/LgDel_Sample_Loading_Table.xlsm
-Df1_22q11_DS	/research_jude/rgs01_jude/dept/DNB/core_operations/Bioinformatics/zakhagrp/Df1_22q11_DS_snRNAseq_Parse/data/Parse_Biosciences_Evercode_WT_Mega_Sample_Loading_Table.xlsm
-Otx2_SE2	/research_jude/rgs01_jude/dept/DNB/core_operations/Bioinformatics/dyergrp/Freshour_S/Clemons_M/Otx2_SE2_Parse_scRNAseq/data/Parse_Biosciences_Evercode_WT.xlsm
+Tuyu_SRM846531	/mnt/scratch2/Maycon/sc-spatial-transcriptomics/analyses/data-exploratory-analysis-sc-spatial-Visium-parse/input/project-metadata/wetlab_metadata_SRM846531.csv
+Dyer_SRM854274	/mnt/scratch2/Maycon/sc-spatial-transcriptomics/analyses/data-exploratory-analysis-sc-spatial-Visium-parse/input/project-metadata/wetlab_metadata_Dyer_SRM854274.csv
+Kennedy_SRM848935	/mnt/scratch2/Maycon/sc-spatial-transcriptomics/analyses/data-exploratory-analysis-sc-spatial-Visium-parse/input/project-metadata/wetlab_metadata_Kennedy_SRM848935.csv

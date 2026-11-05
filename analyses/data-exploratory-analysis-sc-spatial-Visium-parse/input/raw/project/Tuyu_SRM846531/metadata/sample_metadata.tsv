@@ -1,0 +1,5 @@
+ID	Sample_name	Slide_ID	Slide_ID_Visium	Species	Donor_ID	DiseaseType	Tissue_type	Tissue_prep	Details_1	Condition	Platform	Panel	WetLab_technician	SRM2_number	capture_area	illumina_folder	fastq_batch	Genotype	Age
+846531_HD_BA_WM_C_DNB_SM_D63_1_R1	846531_HD_BA_WM_C_DNB_SM_D63_1_R1	D63_1	H1-HGCHDYX	Ms	NA	cancer	Brain	FxF	4 section per slide	NA	Visium HD	Mouse_GFP spike in	Arjumand	846531	A1	3419918	plummgrp_868168_10XVisium-1	NA	NA
+846531_HD_BA_WM_C_DNB_SM_D63_5_R1	846531_HD_BA_WM_C_DNB_SM_D63_5_R1	D63_5	H1-HGCHDYX	Ms	NA	cancer	Brain	FxF	4 section per slide	NA	Visium HD	Mouse_GFP spike in	Arjumand	846531	D1	3419919	plummgrp_868168_10XVisium-1	NA	NA
+846531_HD_BA_WM_C_DNB_SM_D85_4_R1	846531_HD_BA_WM_C_DNB_SM_D85_4_R1	D85_4	H1-8X3CTJ4	Ms	NA	cancer	Brain	FxF	two section per slide	NA	Visium HD	Mouse_GFP spike in	Hannah	846531	D1	3419921	plummgrp_868168_10XVisium-1	NA	NA
+846531_HD_BA_WM_C_DNB_SM_D95_5_R1	846531_HD_BA_WM_C_DNB_SM_D95_5_R1	D85_5	H1-8X3CTJ4	Ms	NA	cancer	Brain	FxF	two section per slide	NA	Visium HD	Mouse_GFP spike in	Hannah	846531	A1	3419920	plummgrp_868168_10XVisium-1	NA	NA

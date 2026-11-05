@@ -276,29 +276,43 @@ for (i in seq_along(project_name)) {
   print(project_id)
   
   # Load sample metadata for project
-  sample_metadata <- read_tsv(sample_input_path, show_col_types = FALSE) %>%
-    
-    # Add metadata columns for sequencing technology info and project info
-    create_common_columns() %>%
-    
-    # Add metadata column for sample species, scATAC data availability, tissue, and condition columns
-    add_column(species = "mouse",
-               scATAC_available = "unknown",
-               tissue = "Cortex",
-               condition_1 = "Genotype",
-               condition_2 = NA) %>%
-    
-    # Update scATAC availability column: Kristen's pilot data is only project known to have scATAC data
-    mutate(scATAC_available = case_when(grepl("Pilot", project_id) ~ "Yes",
-                                        TRUE ~ scATAC_available),
-           
-           # Update tissue for retinal project Otx2_SE2
-           tissue = case_when(grepl("Otx2_SE2", project_id) ~ "Retina",
-                              TRUE ~ tissue),
-           
-           # Update second condition column for projects which have different ages
-           condition_2 = case_when(grepl("Df1_22q11_DS|LgDel|Otx2_SE2", project_id) ~ "Age",
-                              TRUE ~ condition_2))
+  sample_metadata <- read_tsv(sample_input_path, show_col_types = FALSE)
+  if ("Species" %in% names(sample_metadata)) {
+    sample_metadata <- rename(sample_metadata, wetlab_species = Species)
+  } else {
+    sample_metadata <- mutate(sample_metadata, wetlab_species = NA_character_)
+  }
+  sample_metadata <- create_common_columns(sample_metadata)
+
+  if (project_id %in% c("Tuyu_SRM846531", "Dyer_SRM854274", "Kennedy_SRM848935")) {
+    sample_metadata <- sample_metadata %>%
+      mutate(
+        species = case_when(
+          wetlab_species %in% c("Ms", "ms") ~ "mouse",
+          wetlab_species %in% c("Hm", "hm") ~ "human",
+          TRUE ~ NA_character_
+        ),
+        tissue = if ("Tissue_type" %in% names(.)) na_if(str_trim(Tissue_type), "") else NA_character_,
+        scATAC_available = NA_character_,
+        condition_1 = NA_character_,
+        condition_2 = NA_character_
+      ) %>%
+      select(-wetlab_species)
+  } else {
+    sample_metadata <- sample_metadata %>%
+      add_column(species = "mouse",
+                 scATAC_available = "unknown",
+                 tissue = "Cortex",
+                 condition_1 = "Genotype",
+                 condition_2 = NA) %>%
+      mutate(scATAC_available = case_when(grepl("Pilot", project_id) ~ "Yes",
+                                          TRUE ~ scATAC_available),
+             tissue = case_when(grepl("Otx2_SE2", project_id) ~ "Retina",
+                                TRUE ~ tissue),
+             condition_2 = case_when(grepl("Df1_22q11_DS|LgDel|Otx2_SE2", project_id) ~ "Age",
+                                     TRUE ~ condition_2)) %>%
+      select(-wetlab_species)
+  }
 
   # Standardize content of ID columns and condition columns across projects
   if (project_id %in% c("CDK6", "G34R")) {
@@ -406,12 +420,27 @@ Here, we investigate the number of samples for each project considering tissue t
 
 ```{r, fig.align = "left", results = "asis", message = FALSE, warning = FALSE, echo = FALSE}
 tables1 <- joint_sample_metadata %>%
-  count(project, tissue, Genotype)
+  count(project, tissue, Genotype, .drop = FALSE)
 cat("  \n<div align=\"center\" style=\"font-size:80%\">  \n")
 caption_value <- "Number of samples per project, tissue, and genotype"
 print(knitr::kable(tables1, align = "lcccc", caption = caption_value))
 cat("  \n</div>  \n")
 cat("  \n\\pagebreak  \n")
+```
+
+## Number of samples per project, tissue, and condition (wet lab)
+For Visium cohorts, sample condition is taken from the wet lab `Condition` column when genotype is not recorded.
+
+```{r, fig.align = "left", results = "asis", message = FALSE, warning = FALSE, echo = FALSE}
+if ("Condition" %in% names(joint_sample_metadata)) {
+  tables1 <- joint_sample_metadata %>%
+    count(project, tissue, Condition, .drop = FALSE)
+  cat("  \n<div align=\"center\" style=\"font-size:80%\">  \n")
+  caption_value <- "Number of samples per project, tissue, and condition"
+  print(knitr::kable(tables1, align = "lcccc", caption = caption_value))
+  cat("  \n</div>  \n")
+  cat("  \n\\pagebreak  \n")
+}
 ```
 
 ## Number of samples per project, tissue, and age
@@ -477,101 +506,53 @@ for (i in seq_along(project_name)) {
 ```
 
 # Notes
-This section contains notes which may be relevant for evaluating cohorts for testing.
-
-**CDK6 (Han Lab)** - This cohort is a model of developing brain with three different genotypes. Due to being developing tissue, it generally doesn't produce distinct cell groups/clusters. Rather the UMAP/clustering appears more as a continuum. It does not have curated annotations available currently. DE cell type markers generated from the G34R project could be used for biologically relevant preliminary cell type annotation with the gene markers method.
-
-**G34R (Han Lab)** - This cohort is also a model of developing brain, but with four different genotypes. Like CDK6, clustering/UMAP generate more of a continuum. This data set does have some partial manual curation data available. These manual curations were used to generate a list of cell type markers derived from per-cell-type DE, which can be used for testing biologically relevant gene marker annotations. 
-
-The CDK6 and G34R projects come from the same mouse background, age, and tissue type. These two cohorts have shared cell types as well, so could be used for testing a biologically relevant reference label transfer from one to the other.
-
-Both of the CDK6 and G34R data sets required cell-level filtering cutoffs be raised quite a bit from the minimums (e.g., 300 gene, 500 UMI minimums). We used doublet filtering here as well, providing scDblFinder with a doublet rate of ~3.5% (i.e. dbr = 0.035).
-
-**Pilot (Zakharenko Lab)** - This cohort was initially used simply to look at the potential quality of Parse data before Zakharenko lab order more kits and performed more Parse sequencing. It was originally only analyzed through generating cell-level filtering and QC plots. It has since been run through the downstream snap modules and received some feedback from Kristen. We do not have good data available currently to use for biologically relevant cell type annotations.
-
-**LgDel (Zakharenko Lab)** - This is a model looking at a large deletion model in the 22q11 region. It has both genotype and age data for comparison. For this project, samples from three brain regions were sequenced. Most analysis has been done with the regions separated. Kristen is currently in the process of annotating and generating marker lists for cell types in the Cortex and Thalamus regions, so we will have some gene marker data available eventually, but do not currently. The third region, Hippocampus, is not of as much interest to the lab after all, so is not a focus currently. This cohort seemed to produce a lot of doublets so had to have doublet filtering done across regions (using scDblFinder results with dbr.sd = 1). The different regions produce different quality of data. For example, Thalamus seems to produce lower quality data than Cortex, which has seemed to be true across projects so far. Thalamus also returned fewer cells. We have also observed across project that Cortex generally has less distinct clustering, even after doublet removal, than Thalamus.
-
-**Df1_22q11_DS (Zakharenko Lab)** - This is a model looking at a different deletion model in the 22q11 region. This project also has genotype and age data for comparison. The annotations and gene markers from the LgDel project should be relevant to this project once available. Similar patterns in terms of quality and clustering are observed here as in the LgDel project. This project excluded Hippocampus samples and instead used two sequencing wells per sample for each Thalamus sample to boost cell numbers for Thalamus. We are currently evaluating doublets for this project. It appears we will also have to do fairly high doublet filtering here (again using scDblFinder results with dbr.sd = 1).
-
-**Otx2_SE2 (Dyer Lab)** - This is a model looking at super enhancer deletion impact in developing retina. This data set has genotype and timepoint (aka age) conditions for comparison. There was a mistake in selecting samples for sequencing: instead of two samples per genotype at each timepoint, there is only one Heterozygous P3 sample and three Homozygous P3 samples. Since we have well-annotated retina data, we can generally do biologically relevant gene marker-based annotation and reference label transfer. However, the model has a dramatic effect on eye development and removes/greatly reduces many typical cell populations, causing data quality to appear low. It is also unclear yet if the labels of retinal cell types are fully accurate, as there is potentially unknown cell types in the model. Additionally, clustering is messier compared to typical retina projects we might see. Default Harmony integration had strong effects from Genotype and Age for this dataset, so we tested Seurat integration, which appeared to reduce those effects. Minimal filtering was applied for the sake of preserving as many cells as possible. Note that for this project, sample loading table IDs didn't match sample metadata IDs. Sample IDs generated from the loading table are saved in the `Loading_ID` column in the `sample_metadata.tsv`.
 
 # Approximate project sizes
-Here we will explore the object sizes, cell counts, and read counts for each project. These object sizes and cell numbers are based on filtered, integrated objects (including doublet filtering, if relevant). For Kristen's LgDel project, analyses have been split by region, so full object size of all samples is not available. Additionally, for Df1_22q11_DS filtering is still being finalized, so final object sizes and cell numbers are not available yet.
-
-The read counts are the raw read counts from the fastq files. These numbers are from the `analysis_summary` statistics, specifically the `number_of_reads` values, as described in the [Parse documentation](https://support.parsebiosciences.com/hc/en-us/articles/4415027832724-Pipeline-Analysis-Summary-Statistics-Current-Version). The alignment step is not separated by region for Kristen's projects, so the read counts for `LgDel` and `Df1_22q11_DS` reflect the count across all regions. 
-
-| Lab | Cohort Name | Sublibraries | Samples | Object Size | Number of Cells | Total Raw Read Count |
-|:----------------|:----------------|:----------------|:----------------|:----------------|----------------:|----------------:|
-| Zakharenko | Pilot | 2 | 8 | 2.5 GB | 11,979 | 1,352,726,229 |
-| Han | G34R | 8 | 16 | 11.1 GB | 46,481 | 4,104,280,172 |
-| Han | CDK6 | 8 | 9 | 23.5 GB | 98,210 | 4,258,126,291 |
-| Zakharenko | Df1_22q11_DS | 16 | 64 | Cortex: TBD; Thalamus: TBD | Cortex: TBD; Thalamus: TBD | 11,770,251,970 |
-| Zakharenko | LgDel | 19 | 96 | Cortex: 40.2 GB; Hippocampus: 35.1 GB; Thalamus: 21.9 GB | Cortex: 169,789; Hippocampus: 149,991; Thalamus: 96,508 | 11,383,169,642 |
-| Dyer | Otx2_SE2 | 8 | 12 | 14.8 GB | 76,580 | 2,156,331,969 |
 
 # Links to project folders
-**CDK6**
-smb://jude.stjude.org/developmentalneurobiology/core_operations/Bioinformatics/hangrp/CDK6_E16_Mouse_CTX_snRNAseq
-
-**G34R**
-smb://jude.stjude.org/developmentalneurobiology/core_operations/Bioinformatics/hangrp/G34R_E16_Mouse_CTX_snRNAseq
-
-**Pilot**  
-Original project folder: smb://jude.stjude.org/developmentalneurobiology/core_operations/Bioinformatics/zakhagrp/Parse_snRNAseq
-
-SNAP project folder: smb://jude.stjude.org/developmentalneurobiology/core_operations/Bioinformatics/common/pipeline_development_shared/testing_validation_pipeline/testing_validation_snap/sc-rna-seq-snap-Parse-snRNAseq-pilot
-
-**LgDel**
-smb://jude.stjude.org/developmentalneurobiology/core_operations/Bioinformatics/zakhagrp/LgDel_snRNAseq_Parse
-
-**Df1_22q11_DS**
-smb://jude.stjude.org/developmentalneurobiology/core_operations/Bioinformatics/zakhagrp/Df1_22q11_DS_snRNAseq_Parse
-
-**Otx2_SE2**
-smb://jude.stjude.org/developmentalneurobiology/core_operations/Bioinformatics/dyergrp/Freshour_S/Clemons_M/Otx2_SE2_Parse_scRNAseq
 
 # Potential logic to consider in the pipeline
-**Aligning with top ups (Df1_22q11_DS):**
-I have had one project so far where there was a top up run and I expect it is possible for future projects as well, so it will likely be worthwhile to include logic for top ups in the alignment step.
 
-**Accounting for projects with > 16 sublibraries (LgDel):**
-I have had one project with 19 sublibraries, which required additional parameters provided through a separate file to run the split-pipe combine step as the default parameters for the combine step limit the number of sublibraries to 16.
+Reference configuration for **Tuyu_SRM846531** Space Ranger `count` (repo snapshot: `input/project-metadata/spaceranger_Tuyu_SRM846531.yaml`).
 
-**Rerunning split-pipe combined after removing sublibraries (Df1_22q11):**
-I have had one project where a sublibrary was removed after looking at the sublibrary QC, so I needed to rerun the split-pipe combine step after removing that sublibrary. I have also had another project where we debated removing sublibraries. Ultimately, we chose not to, but it was a possibility, so I think it might be good to have the ability to rerun the split-pipe combine step, separately from the initial alignment step.
+**FASTQ layout (module note):** Space Ranger uses one Illumina folder per sample. For this cohort, the effective FASTQ root is under `.../Data/Raw/plummgrp_868168_10XVisium-1/` (not `Data/Raw/` alone).
 
-**Order of sublibraries matter (all projects):**
-When running the combine step, Parse assigns sublibrary suffixes to barcodes based on the sublibrary file path order in the list used for the split-pipe combine command. To match barcode suffixes to correct sublibrary for use in downstream QC plots and analysis, must preserve/know the order of sublibraries used for the combine step.
+**Image and registration (auto-detect):** When enabled, companion files are resolved in the same folder as the matched cytaimage per capture area (A1 or D1):
 
-**Ensuring sample names are consistent across metadata and loading table (Otx2_SE2):**
-Alignment uses sample names from the sample loading table when naming output folders. I have run into an example where names that were used in loading table didn't have the exact same format as names used in sample metadata. This needed to be addressed when trying to load alignment results downstream using the list of sample names provided in sample metadata. For the sake of avoiding these issues, maybe it would be worth clarifying that sample names should match across the loading table and sample metadata? Or at least the sample metadata should have a column where the matching names are provided?
+- Main cytaimage: `*-A1-*.tif` or `*-D1-*.tif` (excluding `*_IF.tif`)
+- Colorized image: matching `*_IF.tif`
+- Loupe alignment: `*-A1-fiducials-image-registration.json` or D1 equivalent
 
-**Allowing more customization of scDblFinder parameters (multiple projects inc. CDK6, G34R, LgDel, Df1_22q11_DS):**
-For the upstream analysis, logic for scDblFinder customization of doublet rate parameters (e.g., dbr.sd, dbr, dbr.per1k) would be useful. This has been needed because scDblFinder defaults are set to use 10x doublet rates. Parse's published doublet rate is lower than 10x, but also potentially inaccurate. There is literature that suggests Parse doublet rates can actually be higher than expected. I have used different parameters and rates for different projects based on testing for specific projects and getting feedback from the collaborators, so having the ability to customize which doublet parameter (e.g., dbr.sd, dbr, dbr.per1k) is used and the values provided seems worthwhile to include, if possible.
+```{r spaceranger-tuyu-config, echo=TRUE}
+suppressPackageStartupMessages(library(yaml))
 
-**Making mitochondrial expression % MAD filtering optional (Otx2_SE2):**
-I have found that using MAD filtering for mitochondria should not be necessarily be included in the default cell-level filtering. Some literature has indicated Parse has globally lower mitochondrial detection than 10x droplet methods. This means mitochondrial expression %s are generally much lower for Parse projects and I have seen that using MAD filtering can potentially set too harsh filtering (e.g., mitochondrial % cutoff = 0). After discussing with Cody, we determined that mitochondrial MAD filtering likely should not be used by default for Parse projects going forward, so making the mitochondrial MAD filtering optional for cell-level filtering would be important.
+tuyu_sr_config <- file.path(metadata_dir_parse, "spaceranger_Tuyu_SRM846531.yaml")
+sr_cfg <- read_yaml(tuyu_sr_config)
+
+fmt_cfg_value <- function(x) {
+  if (is.null(x)) {
+    return("")
+  }
+  if (is.logical(x)) {
+    return(as.character(x))
+  }
+  if (length(x) == 1) {
+    return(as.character(x))
+  }
+  paste(as.character(x), collapse = ", ")
+}
+
+sr_cfg_tbl <- tibble(
+  setting = names(sr_cfg),
+  value = vapply(sr_cfg, fmt_cfg_value, character(1))
+)
+
+knitr::kable(sr_cfg_tbl, col.names = c("Setting", "Value"), align = "ll")
+```
 
 # Conclusions
 
-| Lab | Cohort Name | Sublibraries | Samples | Tissue | Chemistry | Kit | Notes | cohort_to_use_for_pipeline 
-|:----------------|:----------------|:----------------|:----------------|:----------------|:----------------|:----------------|:----------------|:----------------|
-| Han | G34R | 8 | 16 | Cortex | v3 | WT | Increased from minimum filtering; doublet removal (not high) | Testing 1 |
-| Zakharenko | Df1_22q11_DS | 16 | 64 | Cortex, Thalamus | v3 | WT_mega | Top-ups; doublet removal (high) expected | Testing 2 |
-| Zakharenko | LgDel | 19 | 96 | Cortex, Hippocampus, Thalamus | v3 | WT_mega | >16 sublibraries; doublet removal (high) | Testing 3 |
-| Dyer | Otx2_SE2 | 8 | 12 | Retina | v3 | WT | Minimum filtering; removed MAD for mtDNA; sample loading IDs don't match sample metadata IDs | Testing 4 |
-| Han | CDK6 | 8 | 9 | Cortex | v3 | WT | Increased from minimum filtering; doublet removal (not high) | Testing 5 |
-| Zakharenko | Pilot | 2 | 8 | Cerebellum, Cortex, Hippocampus, Thalamus | v2 | WT_mini | -- | Testing 6 |
-
 # References
-**Parse doublets:**  
-1. [Parse Biosciences, What is the expected doublet rate?](https://support.parsebiosciences.com/hc/en-us/articles/360053107311-What-is-the-expected-doublet-rate).  
-2. [Filippov et al., Comparative transcriptomic analyses of thymocytes using 10x Genomics and Parse scRNA-seq technologies. BMC Genomics, 2024](https://doi.org/10.1186/s12864-024-10976-x).  
-
-**Parse mitochondrial detection and expression %:**  
-3. [Gezelius et al., Comparison of high-throughput single-cell RNA-seq methods for ex vivo drug screening. NAR Genomics and Bioinformatics, 2024](https://doi.org/10.1093/nargab/lqae001).  
-4. [Hatje et al., Comparison of single-cell RNA-seq methods to enable transcriptome profiling of neutrophils in clinical samples. Cell Reports Methods, 2025](https://doi.org/10.1016/j.crmeth.2025.101173).  
-5. [De Simone et al., Comparative Analysis of Commercial Single-Cell RNA Sequencing Technologies. bioRxiv, 2025](https://doi.org/10.1101/2024.06.18.599579).
 
 
 ```{r echo=FALSE}

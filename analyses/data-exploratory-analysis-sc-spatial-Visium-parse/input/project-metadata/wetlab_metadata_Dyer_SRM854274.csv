@@ -1,0 +1,7 @@
+Sample_name,Slide_ID,Slide_ID_Visium,Species,Donor_ID,"DiseaseType(cancer,normal,disease)",Tissue_type ,Tissue_prep,Details_1,Condition,Platform,Panel,WetLab_technician,Raw_data_dir,DryLab_analyist,Section_name,SRM2_number
+854274_Dyer_A1,MAST394C13A1,H1-J8V7VWN,Hm,NA,cancer,neuroblastoma,FFPE,two section per slide ,NA,Visium HD,Human transcriptome probe set v2.1,NA,,,,854274
+854274_Dyer_D1,MAST9714D1,H1-J8V7VWN,Hm,NA,cancer,neuroblastoma,FFPE,two section per slide ,NA,Visium HD,Human transcriptome probe set v2.1,NA,,,,854274
+,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,
+*Sample_name =  choose it from your file name generator or wet lab convention,,,,,,,,,,,,,,,,
+** Section_name = leave it for the analyst to fill out later,,,,,,,,,,,,,,,,

@@ -1,0 +1,7 @@
+Sample_name,Slide_ID,Slide_ID_Visium,Species,Donor_ID,"DiseaseType(cancer,normal,disease)",Tissue_type ,Tissue_prep,Details_1,Condition,Platform,Panel,WetLab_technician,Raw_data_dir,DryLab_analyist,Section_name,SRM2_number
+848935_HD_BM_WM_C_STJ_AK_BlockB_R1,Block B A1,H1-39XBXGY,Hm,Patient_1,cancer,bone marrrow ,FFPE,two section per slide ,Case,VHD,WTX,Hannah,Z:\ResearchHome\Groups\plummgrp\home\common\CSO-Dir\Files\StJude\Visium\848935_Kennedy_Bone_Marrow\Data\WetLabNotes,Maycon,Section_1,848935
+848935_HD_BM_WM_C_STJ_AK_BlockD_R1,Block D D1,H1-39XBXGY,Hm,Patient_2,cancer,bone marrrow ,FFPE,two section per slide ,Control,VHD,WTX,Hannah,Z:\ResearchHome\Groups\plummgrp\home\common\CSO-Dir\Files\StJude\Visium\848935_Kennedy_Bone_Marrow\Data\WetLabNotes,Maycon,Section_2,848935
+,,,,,,,,,,,,,,,,
+,,,,,,,,,,,,,,,,
+*Sample_name =  choose it from your file name generator or wet lab convention,,,,,,,,,,,,,,,,
+** Section_name = leave it for the analyst to fill out later,,,,,,,,,,,,,,,,
